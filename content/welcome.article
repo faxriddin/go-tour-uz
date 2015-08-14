@@ -68,8 +68,7 @@ Davom etish uchun [[javascript:highlightAndClick(".next-page")]["navbatdagi"]] t
 #appengine: web xizmat esa [[http://golang.org/][golang.org]] ning serverlarida joylashgan.
 #appengine: 
 #appengine: Xizmat Go dasturni qabul qiladi, kompilyatsiya qiladi, linklarni yaratadi va dasturni 
-#appengine: maxsus maydon ichida ishga tushiradi 
-#appengine: a sandbox, then returns the output.
+#appengine: maxsus maydon ichida ishga tushiradi.
 #appengine: 
 #appengine: O'yin maydonida dasturlarni ishga tushirish soni uchun chegara qo'yilgan: 
 #appengine: 
