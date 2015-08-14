@@ -49,7 +49,7 @@ value('translation', {
     'submit-feedback': 'Ushbu sahifa haqida javob yozing',
 
     // GitHub issue template: update repo and messaging when translating.
-    'github-repo': 'github.com/golang/go',
+    'github-repo': 'github.com/faxriddin/go-tour-uz',
     'issue-title': 'sayohat: [QISQA IZOH BILAN ALMASHTIRING]',
     'issue-message': 'Yuqoridagi sarlavhani issue (xatolik) ma`nosiga moslab nomlang va javob xatingizni xatolikka tegishli kod bilan birga shu yerga kiriting.',
     'context': 'Mazmuni',

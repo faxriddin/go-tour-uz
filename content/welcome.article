@@ -62,7 +62,7 @@ Sayohat boshqa tillarda ham mavjud:
 
 Davom etish uchun [[javascript:highlightAndClick(".next-page")]["navbatdagi"]] tugmani yoki `PageDown` ni bosing.
 
-#appengine: * Go O'yin maydoni
+#appengine: * Go "O'yin maydoni"
 #appengine: 
 #appengine: Ushbu sayohat [[http://play.golang.org/][Go Playground]] ustiga qurilgan,
 #appengine: web xizmat esa [[http://golang.org/][golang.org]] ning serverlarida joylashgan.

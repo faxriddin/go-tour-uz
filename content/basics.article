@@ -169,7 +169,7 @@ Yoki yanada soddaroq ko'rinishda:
 	f := float64(i)
 	u := uint(f)
 
-Unlike in C dagidan farqli ravishda  Go da farqli turlar elementlari orasida biriktirishda aniq o'tkazish talab qilinadi.
+C dagidan farqli ravishda  Go da farqli turlar elementlari orasida biriktirishda aniq o'tkazish talab qilinadi.
 Misoldagi `float64` yoki `int` o'tkazishlarni o'chiring va nima yuz berishini ko'ring.
 
 .play basics/type-conversions.go
