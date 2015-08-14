@@ -1,0 +1,176 @@
+Raqobat
+Go raqobatni tilning yadro qismida qo'llaydi. Ushbu mashg'ulot uni qanday qo'llanilishini bir nechta misollar bilan ko'rsatib beradi.
+
+Go mualliflari
+http://golang.org
+
+* Gorutinlar
+
+_goroutine_ bu Go runtime tomonidan boshqariladigan yengil vaznli oqim.
+
+	go f(x, y, z)
+
+yangi gorutin ishga tushirildi
+
+	f(x, y, z)
+
+`f`, `x`, `y` va `z` larning e'lon qilinishi joriy gorutinda va `f` ning bajarilishi esa boshqa yangi gorutinda sodir bo'layabdi.
+
+Gorutinlar bitta addres joyida ishta tushadi shu sababli umumiy xotiraga huquq sinxronlashgan bo'lishi kerak. [[http://golang.org/pkg/sync/][`Sinxronlash`]] paketi qulayliklarni ta'minlaydi, bunga qaramasdan siz unga muhtojlikni sezmaysiz Go da boshqa qulayliklar mavjud. (Navbatdagi slaydga qarang.)
+
+.play concurrency/goroutines.go
+
+* Kanallar
+
+Kanallar turlangan trubalar bo'lib ular orqali siz qiymatlarni jo'natish yoki kanal operatori `<-` yordamida qabul qilishingiz mumkin.
+
+	ch <- v    // v ni ch kanalga jo'natish.
+	v := <-ch  // ch dan qabul qilish va 
+	           // uni v ga biriktirish.
+
+(Ma'lumot yo'naltiruvvchiga qarab oqadi.)
+
+Xaritalar va qirqimlar kabi kanallar ham ishlatilishidan oldin yaratilgan bo'lishi kerak:
+
+	ch := make(chan int)
+
+O'zgarishsiz jo'natishlar va qabul qilishlar blockda toki boshqa tomon tayyor bo'lguncha. Bunday qulaylik gorutinlarga sinxron ishlashlari uchun hech qanday aniq qulflashlarni yoki shartli o'zgaruvchilarni qo'shmasdan amalga oshirish imkonini yaratadi.
+
+.play concurrency/channels.go
+
+* Bufferlangan kanallar
+
+Kanallar _buferlangan_ bo'lishi mumkin. `make` uchun ikkinchi argumentni kiritilishi bufferlangan kanal uchun bufferlar sonini anglatadi:
+
+	ch := make(chan int, 100)
+
+Bufferlangan kanalga jo'natish buffer to'lganidan keyin bloklanadi. Olish esa buffer bo'sh bo'lganida blocklanadi.
+
+Misolni bufferdan oshirib ishlatishga moslab o'zgartiring va nima sodir bo'lishini kuzating.
+
+.play concurrency/buffered-channels.go
+
+* Range va Close
+
+Jo'natuvchi kanalni boshqa qiymatlarni yubormaslikdan habar berish maqsadida kanalni yopishi(`close`) ham mumkin. Qabul qiluvchi qabul qilish ifodasida ikkinchi parametrdan foydalanib kanal yopiqlig holatini aniqlashi mumkin bo'ladi: quyidagi ifodadan so'ng
+
+	v, ok := <-ch
+
+`ok` qiymati `false` bo'ladi agarda qabul qilishga hech qanday qiymat bo'lmasa va kanal yopiq bo'lsa.
+
+`for`i`:=`range`c`  kabi takrorlanish kanaldan toki u yopilmagunicha qiymatlarni qabul qilaveradi.
+
+*Izoh:* Faqat jo'natuvchi kanalni yoopa oladi, qabul qiluvchi hech qachon yopa olmaydi. Yopiq kanalda jo'natishga urinish xatolikka sabab bo'ladi.
+
+*Boshqa*izoh*: Kanallar fayllarga o'xshamaydi; Siz odatda ularni yopishga muhtoj emassiz. Yopish faqat qiymatlarni jo'natishga hech vaqo yo'q bo'lgan vaziyatlarda kerak. Masalan, `range` dagi takrorlanishni to'xtatish uchun ishlatilishi mumkin.
+
+.play concurrency/range-and-close.go
+
+* Select
+
+`select` operatori gorutinlarga ko'p amalli bog'lanishlarda kutishga imkon beradi.
+
+`select` bloklanadi toki vaziyatlardan biri bajarilgunicha, so'ngra ushbu vaziyat bajariladi. U tayyor turganlar bir nechtasidan ixtiyoriy bittasini oladi.
+
+.play concurrency/select.go
+
+* Select dagi Default (hech qanday shart bajarilmaganda) tanlanish
+
+`default` vaziyati agarda boshqa vaziyatlar tayyor bo'lmasa bajariladi.
+
+`default` vaziyatini bloklamasdan jo'natish va qabul qilishga urinishga ishlating:
+
+	select {
+	case i := <-c:
+		// use i
+	default:
+		// c dan qabul qilib bo'lib bloklanadi
+	}
+
+.play concurrency/default-selection.go
+
+* Mashq: Ikkilik daraxtiga ekvivalent
+Ikkilik daraxti shunday hislatliki uning har bir tuguni, o'zining chap qismida o'zidan kichkina qiymatni va o'zining o'ng tomonida o'zidan katta qiymatni saqlay oladi.
+
+U yerda berilgan qiymatlardan bir qancha ikkilik daraxtlarini barglari bilan yasash imkoni bo'lishi mumkin. Masalan quyida keltirilgan qiymatlar ket-ketligidan ikkita ikkilik daraxtini yasash mumkin 1, 1, 2, 3, 5, 8, 13.
+
+.image /content/img/tree.png
+
+Ko'pgina dasturlash tillarida qiymatlar ketma-ketligidan ikkilik daraxtini yasash mumkinligini aniqlash bir muncha murakkabroq hisoblanadi. Biz Goning kanallari va raqobatidan foydalanib onson yechimni yozamiz.
+
+Ushbu misol `tree` paketini ishlatayabdi. Ushbu paketda Tree turi ham e'lon qilingan:
+
+	type Tree struct {
+		Left  *Tree
+		Value int
+		Right *Tree
+	}
+
+* Mashq: Ikkilik daraxtiga ekvivalent
+
+*1.* `Walk` funkciyasini bajarilish holatiga keltirish.
+
+*2.* `Walk` funksiyasini Test qilish.
+
+`tree.New(k)` funksiyasi `k`, `2k`, `3k`, ..., `10k` qiymatlardan foydalanib tasodifiy-strukturalangan ikkilik daraxtini konstruksiya qiladi.
+
+Yangi kanal yarating va yurishni davom ettiring:
+
+	go Walk(tree.New(1), ch)
+
+So'ngra o'qing va kanaldagi 10 ta qiymatni chop eting. Ular 1, 2, 3, ..., 10 sonlar bo'lishi kerak.
+
+*3.* `Same` funksiyasini `Walk` funksiyasidan foydalanib ishlash holatiga keltiring. Ushbu funksiya `t1` va `t2` larning qiymatlarini ustma-ust tushishini tekshirsin.
+
+*4.* `Same` funkssiyasini tekshirish.
+
+`Same(tree.New(1),`tree.New(1))` natija true va `Same(tree.New(1),`tree.New(2))` natijasi false bo'lishi kerak.
+
+.play concurrency/exercise-equivalent-binary-trees.go
+
+* Mashq: Web robotlar
+
+Ushbu topshiriqda siz Goning raqobatlik imkoniyatidan foydalanib web skanerni parallellashtirasiz.
+
+`Crawl` funksiyasini shunday o'zgartiringki u URL larni parallel olsinu lekin bir hil URL larni takroran olib qo'ymasin.
+
+.play concurrency/exercise-web-crawler.go
+
+* Bu yerdan keyin qayerga borish kerak...
+
+#appengine: Siz quyidagilardan boshlashingiz mumkin
+#appengine: [[http://golang.org/doc/install/][Go ni o'rnatish]] yoki yuklab olish
+#appengine: [[http://code.google.com/appengine/downloads.html#Google_App_Engine_SDK_for_Go][Go App Engine SDK]].
+
+#appengine: Goni o'rnatib bo'lgach
+[[http://golang.org/doc/][Go qo'llanmasi]] bo'lmish eng yaxshi joydan
+#appengine: davom eting.
+boshlang.
+U o'zida yo'llanmalar, qo'llanmalar, videolar va boshqa ko'pgina ma'lumotlarni mujassamlashtirgan.
+
+Go kodlar bilan ishlashni tashkillashtirish uchun yoki o'rganish uchun [[http://www.youtube.com/watch?v=XCsL89YtqCs][bularni]] qarab chiqing yoki [[http://golang.org/doc/code.html][How to Write Go Code]] ni o'qib chiqing.
+
+Agar siz standard kutubxonalarga nisbatan yordamga muhtoj bo'lsangiz [[http://golang.org/pkg/][package reference]] ga qarang. Tilni o'ziga yordam kerak bo'lsa [[http://golang.org/ref/spec][Language Spec]] dan o'qish uchun ajoyib ma'lumotlarni topishingiz mumkin.
+
+Keyinchalikka Goning parallelligini o'rganish uchun 
+[[http://www.youtube.com/watch?v=f6kdp27TYZs][Go Concurrency Patterns]] ga qarang
+([[http://talks.golang.org/2012/concurrency.slide][slides]])
+va yana 
+[[https://www.youtube.com/watch?v=QDDwwePbDtw][Advanced Go Concurrency Patterns]]
+([[http://talks.golang.org/2013/advconc.slide][slides]])
+va yana quyidagilarni 
+[[http://golang.org/doc/codewalk/sharemem/][Share Memory by Communicating]]
+o'qib chiqing.
+
+Web ilovalarni yaratish bo'yicha boshlang'ich ma'lumotlarni olish uchun 
+[[http://vimeo.com/53221558][A simple programming environment]] ga qarang
+([[http://talks.golang.org/2012/simple.slide][slides]])
+va yana quyidagini o'qib chiqing
+[[http://golang.org/doc/articles/wiki/][Writing Web Applications]].
+
+[[http://golang.org/doc/codewalk/functions/][First Class Functions in Go]] kod bo'yicha yurish sizga Goning funksiya turlari bo'yicha qiziqarli kelajak istiqbollarini beradi.
+
+[[http://blog.golang.org/][Go Blog]] katta arxivga ega bo'lib Go maqolalari haqida juda ko'p ma'lumot beradi.
+
+Ko'proq ma'lumot olish uchun [[http://golang.org][golang.org]] ga tashrif buyuring.
+

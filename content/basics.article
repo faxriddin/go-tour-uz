@@ -1,0 +1,220 @@
+Paketlar, o'zgaruvchilar va funksiyalar.
+Go dasturlash tilining boshlang`ich komponentlarini o`rgatadi.
+
+Go mualliflari
+http://golang.org
+
+* Paketlar
+
+Har bir Go dastur packetni yasaydi.
+
+Ishga tushiriladigan dasturlar `main` paketi bilan boshlanadi.
+
+Ushbu dastur import yo'li bilan `"fmt"` va `"math/rand"` paketlarini qo'llayabdi.
+
+Konventsiya bo'yicha paket nomi ko'rsatilgan yo'ldagi oxirgi element nomi bilan bir xil bo'ladi. Masalan, `"math/rand"` paketi  o'zida `package`rand` operatori bilan boshlanadigan fayliga ega.
+
+#appengine: *Izoh:* ushbu dasturlar bajarilayotgan muhitlar ajralgan (deterministik ko'rinishida)
+#appengine: shu sababli `rand.Intn` har doim bir xil sonni qaytaradi.
+#appengine:
+#appengine: (Turli sonlarni olish uchun sonlar generatoridan foydalanish kerak; [[http://golang.org/pkg/math/rand/#Seed][`rand.Seed`]] ga qarang.)
+
+.play basics/packages.go
+
+* Importlar
+
+Ushbu yumaloq qavs ichidagi import qilish kodlar guruhi bir joyga yig'ilgan import operatorini ifodalaydi. 
+
+Siz quyidagi ko'rinishda yana bir qancha import operatorini yozishingiz ham mumkin edi:
+
+	import "fmt"
+	import "math"
+
+Ammo yuqoridagi usul bir joyga yig'ib import qilishning yaxshi usuli.
+
+.play basics/imports.go
+
+* Eksport qilingan nomlar
+
+Paket import qilingach siz unga eksport qilish davomida nomi bo'yicha murojaat qilishingiz mumkin.
+
+Go da nom eksport qilingan hisoblanadi agarda nom bosh xarfi katta bo'lsa.
+
+`Foo` bu eksport qilingan nom,`FOO` ham xuddi shunday. `foo` esa eksport qilinmagan hisoblanadi.
+
+Kodni ishga tushiring. `math.pi` ni `math.Pi` ga qayta nomlang va yana qayta ishlatib ko'ring.
+
+.play basics/exported-names.go
+
+* Funksiyalar
+
+Funksiyalar nolta yoki ko'p argument qabul qilishi mumkin.
+
+Ushbu misolda `add` ikkita `int` turidagi argumentni oladi.
+
+Eslatma tur nomi o'zgaruvchi nomidan _keyin_ keladi.
+
+(Nimaga turlar bunday kelishi haqida ko'proq ma'lumot olish uchun [[http://blog.golang.org/gos-declaration-syntax][Goning e'lon qilish sintaksisi]] ga qarang.)
+
+.play basics/functions.go
+
+* Funksiyalar  davomi
+
+Qachonki ikki yoki undan ko'p funksiyaning nomlangan o'zgaruvchilari turlangan bo'lsa siz bir xil turdagi avvalgi o'zgaruvchilarning turlarini tashlab ketishingiz mumkin.
+
+Ushbu misolda biz qisqartirishni amalga oshiramiz
+
+	x int, y int
+
+ni 
+
+	x, y int
+ga o'tkazamiz
+
+.play basics/functions-continued.go
+
+* Birdan ko`p natija
+
+Funksiya bir nechta sondagi natija qaytarishi mumkin.
+
+`swap` funksiyasi ikkita satrni qaytarayabdi.
+
+.play basics/multiple-results.go
+
+* Nomlangan qaytarilayotgan qiymatlar
+
+Go ning qaytaradigan qiymatlari nomlangan va o'zgaruvchi turiga o'xshagan ifodadan iborat bo'lishi ham mumkin.
+
+Ushbu nomlar qaytarilayotgan ma'lumotlarni nimani anglatishini bilish maqsadida ishlatilishi lozim.
+
+`return` operatorining argumentlarsiz ishlatilishi joriy qiymatlarni natija qilib qaytaradi. Bu "yalang'och" qaytarish deya nomlanadi.
+
+Yalang'och qaytarish operatori qisqa funksiyalarda ishlatilishi lozim. BU yerda misol keltirildi. Ular uzun yozilgan funksiyalarni tahlil qilishda noqulaylik tug'dirishi mumkin.
+
+.play basics/named-results.go
+
+* O`zgaruvchilar
+
+`var` operatori o'zgaruvchilar ro'yhatini e'lon qilishda ishlatiladi. Funksiya argumentlari kabi ro'yhatdan keyin tur nomi keltiriladi.
+
+`var` operatori paket yoki funksiya darajasida bo'lishi mumkin. Biz ikkisini ham ushbu misolda ko'rishimiz mumkin.
+
+.play basics/variables.go
+
+* O`zgaruvchilar qiymatlanishi bilan birgalikda
+
+var e'lon qilish operatori ichida o'zgaruvchini qiymatlashni ham amalga oshirish mumkin.
+
+Agar qiymatlovchi mavjud bo'lsa u holda turni tashlab ketish mumkin va o'zgaruvchi qiymatlovchining turini oladi.
+
+.play basics/variables-with-initializers.go
+
+* O`zgaruvchini qisqacha e`lon qilish
+
+Funksiya ichida `:=` qisqa biriktirish operatori `var` operatori o'rnida ishlatilib noaniq usulda turni e'lon qilish mumkin bo'ladi.
+
+Funksiyadan tashqarida har bir operator kalit so'z yordamida boshlanishi kerak (`var`, `func` va xok.) va `:=` konstruksiyasini ishlatib bo'lmaydi.
+
+.play basics/short-variable-declarations.go
+
+* Asosiy turlar
+
+Go ning asosiy turlari quyidagilar
+
+	bool
+
+	string
+
+	int  int8  int16  int32  int64
+	uint uint8 uint16 uint32 uint64 uintptr
+
+	byte // alias for uint8
+
+	rune // alias for int32
+	     // represents a Unicode code point
+
+	float32 float64
+
+	complex64 complex128
+
+Misol bir nechta turlarga tegishli o'zgaruvchilarni e'lon qilgan va yana bu o'zgaruvchini e'lon qilishlar bir joyda importdagi kabi bir blokka mujassamlashishi mumkin.
+
+.play basics/basic-types.go
+
+* No`l qiymatlar
+
+O'zgaruvchilar aniq bir qiymat bilan qiymatlanmasligi ularni _nol_qiymat_ bilan qiymatlanishiga olib keladi.
+
+Nol qiymat bu:
+
+- `0` ga teng sonli turlar uchun,
+- `false` ga teng boolean turi uchun va 
+- `""` (bo'sh matn) satrlar uchun.
+
+.play basics/zero.go
+
+* Turlarni almashtirish
+
+`T(v)` ifoda `v` qiymatni `T` turga o'tkazadi.
+
+Ba'zi sonli tur o'zgartirishlar:
+
+	var i int = 42
+	var f float64 = float64(i)
+	var u uint = uint(f)
+
+Yoki yanada soddaroq ko'rinishda:
+
+	i := 42
+	f := float64(i)
+	u := uint(f)
+
+Unlike in C dagidan farqli ravishda  Go da farqli turlar elementlari orasida biriktirishda aniq o'tkazish talab qilinadi.
+Misoldagi `float64` yoki `int` o'tkazishlarni o'chiring va nima yuz berishini ko'ring.
+
+.play basics/type-conversions.go
+
+* Tur xulosasi
+
+Agar o'zgaruvchi uning maxsus turisiz e'lon qilinsa   When declaring a variable without specifying its type (`var` ni tursiz yoki `:=` sintaksis) o'zgaruvchining turi o'ng qo'l tomondagi qiymatdan _xulosalanadi_.
+
+Agar o'ng qo'l tomon turlangan bo'lsa u holda yangi o'zgaruvchi ham shu turni qabul qiladi:
+
+	var i int
+	j := i // j ham int
+
+Ammo o'ng qo'l tomon sonli o'zgarmaslardan tashkil topgan bo'lsa u holda yangi o'zgaruvchi sonli ifodadagi o'zgarmaslarning qa'nday aniqlikda ekanligiga bog'liq ravishda `int`, `float64` yoki `complex128` turlarini qabul qilishi mumkin:
+
+	i := 42           // int
+	f := 3.142        // float64
+	g := 0.867 + 0.5i // complex128
+
+`v` ning qiymatlovchisni o'zgartirib ko'ring va nima yuz berishini kuzating.
+
+.play basics/type-inference.go
+
+* O`zgarmaslar
+
+O'zgarmaslar ham o'zgaruvchilar kabi e'lon qilinadi faqat `const` kalit so'zi bilan birgalikda.
+
+O'zgarmaslar belgi, satr, mantiqiy ifoda yoki sonli qiymatlar bo'lishi mumkin.
+
+O'zgarmaslar `:=` sintaksis orqali e'lon qilinmaydi.
+
+.play basics/constants.go
+
+* Sonli o'zgarmaslar
+
+Sonli o'zgarmaslar bu yuqori aniqlikdagi _qiymatlar_.
+
+Turlanmagan o'zgarmas turini qiymatlovchi turidan kelib chiqib oladi.
+
+`needInt(Big)` ni ham chop etishga urinib ko'ring.
+
+.play basics/numeric-constants.go
+
+* Tabriklaymiz!
+
+Siz ushbu mashg`ulotni yakunladingiz!
+
+Siz [[/list][modullar]] ro`yhatiga qaytishingiz va nimani o'rganishni xohlasangiz shuni tanlashingiz mumkin, yoki [[javascript:click('.next-page')][navbatdagi]]ni bosib keyingi mashg`ulotga o`tishingiz mumkin.

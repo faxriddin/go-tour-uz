@@ -1,0 +1,90 @@
+Xush kelibsiz!
+Ushbu modulda sayohatdan qanday foydalnishni o`rgatadi shuningdek qanday qilib turli darslarga o`tish va kodni qanday ishga tushirishni ham o`z ichiga oladi.
+
+Go mualliflari
+http://golang.org
+
+* Assalomu aleykum, 世界
+
+[[http://golang.org/][Go dasturlash tiliga]] sayohatga xush kelibsiz!
+
+Sayohat modullar ro'yhatiga ajratilgan bo'lib siz ularga bo'lgan murojaatni sahifaning chap yuqori qismida joylashgan 
+[[javascript:highlight(".logo")][Go bo'yicha sayohat]] ni bosgan holda olishingiz mumkin.
+
+Siz yana ixtiyoriy vaqtda mundarijani sahifaning o'ng yuqori qismida joylashgan [[javascript:highlightAndClick(".nav")][menu]] ni bosgan holda ko'rishingiz mumkin.
+
+Xamma joyda siz ketma-ket slaydlar va topshiriqlarni birdamlikda ishlatishingiz mumkin bo'ladi.
+
+Siz ularni qo'llab bir joday ikkinchi joyga o'tishlarni amalga oshirishingiz mumkin bo'ladi
+
+- [[javascript:highlight(".prev-page")]["avvalgi"]] yoki `PageUp` avvalgi sahifaga o'tish uchun,
+
+- [[javascript:highlight(".next-page")]["navbatdagi"]] yoki `PageDown` navbatdagi sahifaga o'tish uchun.
+
+Sayohat interaktivli.
+[[javascript:highlightAndClick("#run")][Ishga tushirish]] tugmasini bosib siz xozirni o'zida kodni 
+#appengine: uzoq masofadagi serverda 
+o'z kompyuteringizda 
+kompilyatsiya qilib ishga tushirish buyrug'i Run (yoki `shift-enter`) ni berishingiz mumkin.
+
+Natija koddan quyi qismda namoyish etiladi.
+
+Ushbu misolli namoyishlar Go ni boshqa qirralarini ko'rsatib beradi. Sayohatdagi dasturlar sizga o'zingizni sinovdan o'tkazish boshlang'ich nuqtasi bo'lishi kerak.
+
+Dasturni tahrirlang va yana ishga tushiring.
+
+Aytgancha agar siz [[javascript:highlightAndClick("#format")][Format]] yoki `ctrl-enter`
+ni bossangiz tahrirlovchi ichidagi matn [[http://golang.org/cmd/gofmt/][gofmt]] uskunadan foydalanib formatlanadi. 
+Siz sintaksisni rangli formatlash stilidan foydalanish maqsadida ushbu imkniyatni yoqib qo'yish uchun  [[javascript:highlightAndClick(".syntax-checkbox")][syntax]] tugmasini bosing.
+
+Qachonki siz siljish uchun tayyor bo'lsangiz [[javascript:highlightAndClick(".next-page")][o'ng yo'naltiruvchi]] ni bosing yoki `PageDown` tugmasidan foydalaning.
+
+.play welcome/hello.go
+
+* Mahalliy Go
+
+Sayohat boshqa tillarda ham mavjud:
+
+- [[http://go-tour-br.appspot.com/][Braziliyacha Portuguese — Português do Brasil]]
+- [[http://go-tour-ca.appspot.com/][Katalancha — Català]]
+- [[http://go-tour-de.appspot.com/][Nemischa — Deutsch]]
+- [[http://go-tour-es.appspot.com/][Ispancha — Español]]
+- [[http://go-tour-fr.appspot.com/][Fransuzcha — Français]]
+- [[http://go-tour-ita.appspot.com/][Italiyancha — Italiano]]
+- [[http://go-tour-he.appspot.com/][Yevreycha — עִבְרִית]]
+- [[http://go-tour-jp.appspot.com/][Yaponcha — 日本語]]
+- [[http://go-tour-kr.appspot.com/][Koreyscha — 한국어]]
+- [[http://go-tour-ro.appspot.com/][Ruminiyacha — Română]]
+- [[http://tour.go-zh.org/][Soddalashtirilgan Xitoycha — 中文（简体）]]
+- [[http://go-tour-zh-tw.appspot.com/][Ananaviy Xitoycha — 中文（繁體）]]
+- [[http://go-tour-ua.appspot.com/][Ukraincha — Українська]]
+- [[http://go-tour-uz.appspot.com/][O'zbekcha Lotin alifbosida — O'zbekcha (lotin alifbosida)]]
+
+Davom etish uchun [[javascript:highlightAndClick(".next-page")]["navbatdagi"]] tugmani yoki `PageDown` ni bosing.
+
+#appengine: * Go O'yin maydoni
+#appengine: 
+#appengine: Ushbu sayohat [[http://play.golang.org/][Go Playground]] ustiga qurilgan,
+#appengine: web xizmat esa [[http://golang.org/][golang.org]] ning serverlarida joylashgan.
+#appengine: 
+#appengine: Xizmat Go dasturni qabul qiladi, kompilyatsiya qiladi, linklarni yaratadi va dasturni 
+#appengine: maxsus maydon ichida ishga tushiradi 
+#appengine: a sandbox, then returns the output.
+#appengine: 
+#appengine: O'yin maydonida dasturlarni ishga tushirish soni uchun chegara qo'yilgan: 
+#appengine: 
+#appengine: - O'yin maydonida vaqt 2009-11-10 23:00:00 UTC (Ushbu sananing ma'nosini aniqlash o'quvchilarga topshiriq)dan boshlanadi. Bu unga keshlashda yengillik  yaratadi va dasturlarga determenistik chiqishlarni taqdim etadi.
+#appengine: 
+#appengine: - Yana CPU ni ishlash vaqti xotiradan foydalanishlarga xam chegara bor, va shuningdek tashqi tarmoq hosts laridan foydalanish huquqi yo'q. 
+#appengine: 
+#appengine: O'yin maydoni Go ning oxirgi sinalgan talqinini ishlatadi.
+#appengine: 
+#appengine: Go O'yin maydonchasini yanada yaxshiroq o'rganish uchun "[[http://blog.golang.org/playground][Inside the Go Playground]]" ni o'qing.
+#appengine: 
+#appengine: .play welcome/sandbox.go
+
+* Tabriklaymiz!
+
+Siz sayohatning birinchi modulini tugatdingiz!
+
+Boshqa o'rganmoqchi bo'lgan modullaringizga o'tish uchun [[javascript:highlightAndClick(".logo")][Go bo'yicha sayohat]] ustida bosing, yana boshqa yo'l bilan yurganda siz Go haqida o'rganib yoki to'g'ridan-to'g'ri [[javascript:click('.next-page')][navbatdagi dars]] bosishingiz mumkin.

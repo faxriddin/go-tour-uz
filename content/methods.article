@@ -1,0 +1,248 @@
+Metodlar va interfeyslar
+Ushbu mashg'ulot metodlar va funksiyalarni o'z ichiga olib obyektlar va ularning xulqllarini konstruktorlarini aniqlashni o'rgatadi.
+
+Go mualliflari
+http://golang.org
+
+* Metodlar
+
+Go klasslarsiz ishlaydi. Bunga qaramasdan siz tuzilma turida metodalrni aniqlashingiz mumkin.
+
+_metod_qabul_qiluvchi_ argumentlar ro'yhatida kelib `func` kalit so'zi bilan metod nomi orasida bo'ladi.
+
+.play methods/methods.go
+
+* Metodlar davomi
+
+Siz metodni paketingizda e'lon qilingan turlardan foydalanib _ixtiyoriy_ turda e'lon qilishingiz mumkin faqat tuzilma turida  emas.
+
+Bundan tashqari siz metod turini boshqa paketdagidan foydalanib ham ko'rsata olmaysiz (shuningdek qurilgan turlarni ham ishlata olmaysiz).
+
+.play methods/methods-continued.go
+
+* Ko'rsatkich qabul qiluvchi Metodlar
+
+Metodlar turlar nomi bilan yoki turlar nomiga ko'rsatuvchilar bilan bog'langan bo'lishi mumkin.
+
+Biz xozir ikkita `Abs` metodlarini ko'rdik. Biri `*Vertex` turiga ko'rsatishini va ikkinchisi `MyFloat` qiymat turiga bog'langanligini ko'rdik.
+
+Ko'rsatkichli qabul qiluchini ishlatishni ikkita sababi bor. Birinchisi, har safar netodni chaqirganda qiymatni nusxalashdan qochish (agar qiymat turi katta tuzilmadan iborat bo'lsa bu yanada samarali bo'ladi). Ikkinchisi, metod qabul qilgan qiymatni ham o'zgartira oladigan bo'ladi.
+
+`Abs` va `Scale` e'lonlarni `*Vertex` dan `Vertex` ga almashtirib ishlatib ko'ring.
+
+`Scale` metodi `v` `Vertex` bo'lganida hech qanday o'zgartirish kirita olmaydi. `Scale` `v` ni o'zgartiradi. `v` qiymat turi ko'rsatkich bo'lmaganligi sababli metod `Vertex` dagi ko'ringanini nusxalab olib uni ustida ish olib boradi va asil qiymatga ta'sir o'tkaza olmaydi.
+
+`Abs` baribir ishlaydi. U `v` ni faqat o'qiydi.  Shu sababli qiymatni asil nusxasi ustida ish qilinayabdimi(qiymat ko'rsatkichlimi) yoki qiymat nusxalanib so'ngra uni ustida ish qilinayabdimi buni unga hech qanday farqi yo'qday bo'ladi.
+
+.play methods/methods-with-pointer-receivers.go
+
+* Interfeyslar
+
+Interfeys turi bu metodlar to'plami bilan aniqlanishidir.
+
+Interfeys turi qiymati ushbu metodlar qo'llagan ixtiyoriy qiymatlarni qabul qilishi mumkin.
+
+*Izoh:* kod satrining 22 satrida bitta xatolik bor.
+`Vertex` (qiymat turi) `Abser` ni qanoatlantirmaydi chunki 	
+`Abs` metod `*Vertex` (ko'rsatkichli tur) uchun aniqlangan.
+
+.play methods/interfaces.go
+
+* Noaniq tarzda e'lon qilingan Interfeyslar
+
+Tur metodlarni qo'llash yo'li bilan interfeys turini yaratadi.
+U yerda o'lchamga tegishli aniq e'lonlar yo'q; "implements" kalit so'zi yo'q. 
+
+Aniq e'lon qilinmagan interfeyslar paketlarni boshqa paketlardan ishlatishni ajratmaydi: boshqalarga bog'liq emas.
+
+U yana aniq interfeyslarni e'lon qilishda yordam beradi, chunki siz har bir qo'llanilishni topib u interfeyslarni yangicha nomlashingiz kerak emas.
+
+[[http://golang.org/pkg/io/][io paketi]] `O'qishni` va `Yozishni` aniqlaydi; siz uni qilishingiz kerak emas.
+
+.play methods/interfaces-are-satisfied-implicitly.go
+
+* String ga aylantiruvchilar
+
+Eng ko'p tarqalgan interfeyslardan biri bu [[//golang.org/pkg/fmt/#Stringer][`Stringer`]] bo'lib u [[//golang.org/pkg/fmt/][`fmt`]] paketida aniqlangan.
+
+	type Stringer interface {
+		String() string
+	}
+
+`Stringer` bu o'zini satr sifatida ifodalay oladigan tur. `fmt` paketi (va boshqa ko'plari) bunga qiymatlarni chop etuvchi interfeys sifatida qarashadi.
+
+.play methods/stringer.go
+
+* Mashq: Stringga aylantiruvchilar
+
+`IPAddr` turini `fmt.Stringer` dan foydalanib manzillarni nuqta bilan ajratgar holatda chiqaradigan qilib yasang.
+
+Misol uchun, `IPAddr{1,`2,`3,`4}` chaqirilishi `"1.2.3.4"` natijani berishi kerak.
+
+.play methods/exercise-stringer.go
+
+* Xatolar
+
+Go dasturlari xatolik holatini `error` qiymati bilan namoyish qilishadi. 
+
+`error` turi bu `fmt.Stringer` ga o'xshab qurilgan interfeys:
+
+	type error interface {
+		Error() string
+	}
+
+(`fmt` paketidagi `fmt.Stringer` `error` uchun qiymatlarni chop etishda interfeys tarzida ko'rinadi.)
+
+Funksiyalar tez-tez `error` qiymat qaytaradi va chaqirayotgan kod xatoliklarni `nil` ga tengligini tekshirilib xatolarni boshqaradi.
+
+	i, err := strconv.Atoi("42")
+	if err != nil {
+		fmt.Printf("sonni turini o`zgartirib bo`lmadi: %v\n", err)
+	}
+	fmt.Println("Integerga o`tkazildi:", i)
+
+`error` ning nilga tengligi xammasi yaxshi bajarilganligini nilga tengmasligi esa omadsiz yakunlanganligidan dalolat beradi.
+
+.play methods/errors.go
+
+* Mashq: Xatolar
+
+`Sqrt` funksiyangizni avvalgi mashg'ulotlardan nusxalab olib keling va uni xatolikni chiqaradigan qilib o'zgartiring.
+
+`Sqrt` ga manfiy sonlar berilgan vaqtda u kompleks sonlarni qo'llab quvvatlamaganligi bois nilga teng bo'lmagan xatolikni qaytarishi lozim.
+
+Yangi tur yarating
+
+	type ErrNegativeSqrt float64
+
+va unga ushbu metodni berib xatolikni yarating
+
+	func (e ErrNegativeSqrt) Error() string
+
+Bunda `ErrNegativeSqrt(-2).Error()` metodni chaqiruvi `"cannot`Sqrt`negative`number:`-2"` degan natijani qaytarishi lozim.
+
+*Izoh:* `fmt.Sprint(e)` ni `Error` metodi ichida chaqirish dasturni cheksiz takrorlanish sikliga jo'natadi. Siz ushbu tur o'zgartirishdan foydalanib bundan avvalroqdan oldini olishingiz mumkin: `fmt.Sprint(float64(e))`. Nima uchun?
+
+`Sqrt` funksiyangizni manfiy son kiritganda `ErrNegativeSqrt` qiymat qaytaradigan qilib o'zgartiring.
+
+.play methods/exercise-errors.go
+
+* O'quvchilar
+
+`io` paketi ma'lumotlar oqimi oxirini o'qishga moslashgan `io.Reader` interfeysini aniqlaydi.
+
+Goning standart kutubxonasi o'zida [[http://golang.org/search?q=Read#Global][ko'pgina qo'llaniluvchi]] interfeyslar, fayllar qo'shilish yuklanmasi, tarmoqqa ulanishlar, compressorlar, cipher lar va boshqalarni mujassanlashtirgan.
+
+`io.Reader` interfeysi `Read` metodiga ega:
+
+	func (T) Read(b []byte) (n int, err error)
+
+`Read` baytli qirqimni ma'lumotlar bilan to'ldiradi va to'ldirilgan baytlar sonini va xatolikni qaytaradi. U oqim tugab qolsa `io.EOF` xatolikni qaytaradi.
+
+Ushbu misol 
+[[//golang.org/pkg/strings/#Reader][`strings.Reader`]] ni yaratayabdi va o'z chiqarishlarida bir martada 8 baytni qo'llayabdi.
+
+.play methods/reader.go
+
+* Mashq: O'quvchilar
+
+Cheksiz oqimdan ASCII ning `'A'` belgisini ajratib olishni `Reader` turida bajaring.
+
+.play methods/exercise-reader.go
+
+* Mashq: rot13O'quvchi
+
+[[http://golang.org/pkg/io/#Reader][io.Reader]] umumiy qolipini oqimlarini ketishini o'zgartirish bu boshqa `io.Reader` o'ramoq deganidir.
+
+Masalan, [[http://golang.org/pkg/compress/gzip/#NewReader][gzip.NewReader]] funksiyasi `io.Reader` ni oladi va `io.Reader`(siqilmagan ma'lumotlar oqimi) ni qo'llab `*gzip.Reader`(siqilgan ma'lumotlar oqimi) ni qaytaradi  (a stream of the decompressed data).
+
+`rot13Reader` ni `io.Reader` ni qo'llab va `io.Reader` dan satrni o'qiydigan qilib ish holatiga keltiring, [[http://en.wikipedia.org/wiki/ROT13][rot13]]  ni qo'llab shifr o'rniga barcha alfavit belgilarini chiqarib oqimni o'zgartiring.
+
+`rot13Reader` turi sizga taqdim etilgan.
+Ushbu `io.Reader` ni uning `Read` metodini qo'llab yasang.
+
+.play methods/exercise-rot-reader.go
+
+* Web serverlar
+
+[[http://golang.org/pkg/net/http/][http paketi]] `http.Handler` yordamida har qanday qiymatni qo'llab HTTP so'rovlarga xizmat qiladi:
+
+	package http
+
+	type Handler interface {
+		ServeHTTP(w ResponseWriter, r *Request)
+	}
+
+Ushbu misolda `Hello` turi `http.Handler` ni vazifasini bajarayabdi.
+
+[[http://localhost:4000/][http://localhost:4000/]] ga salomlashish uchun tashrif buyuring.
+
+#appengine: *Izoh:* Ushbu misqol Tour asosida web interfeys orqali  
+#appengine: ishlamaydi. Web serverlar yaratishga urinib ko'ring. Balki siz 
+#appengine: [[http://golang.org/doc/install/][Go ni o'rnatishni]] xohlarsiz.
+
+.play methods/web-servers.go
+
+* Mashq: HTTP Handler (so'rovlarni qayta ishlovchi dastur)lar
+
+Quyidagi turlarni yarating va ularda ServerHTTP metodini aniqlang. Ularni sizning web serveringizdagi maxsus yo'llar bilan bog'lang.
+
+	type String string
+
+	type Struct struct {
+		Greeting string
+		Punct    string
+		Who      string
+	}
+
+Misol uchun, quyidagilarni ishlatib siz boshqaruvchilarni ro'yhatdan o'tkazishga qodir bo'lishingiz mumkin:
+
+	http.Handle("/string", String("I'm a frayed knot."))
+	http.Handle("/struct", &Struct{"Hello", ":", "Gophers!"})
+
+#appengine: *Izoh:* Ushbu misqol Tour asosida web interfeys orqali  
+#appengine: ishlamaydi. Web serverlar yaratishga urinib ko'ring. Balki siz 
+#appengine: [[http://golang.org/doc/install/][Go ni o'rnatishni]] xohlarsiz.
+
+.play methods/exercise-http-handlers.go
+
+* Sur'atlar
+
+[[http://golang.org/pkg/image/#Image][Image paketi]] `Image` interfeysini e'lon qiladi:
+
+	package image
+
+	type Image interface {
+		ColorModel() color.Model
+		Bounds() Rectangle
+		At(x, y int) color.Color
+	}
+
+*Izoh*: `Bounds` metodining `Rectangle` qaytarayotgan quymati aslida  
+[[http://golang.org/pkg/image/#Rectangle][`image.Rectangle`]] bo'lib u `image` paketini ichida e'lon qilingan.
+
+(Batafsil ma'lumot olish uchun [[http://golang.org/pkg/image/#Image][qo'llanmaga]] qarang.)
+
+`color.Color` va `color.Model` turidagi interfeyslari ham bor lekin biz ularni o'rniga `color.RGBA` va `color.RGBAModel` larni qo'llaymiz. Ushbu interfeyslar va turlar [[http://golang.org/pkg/image/color/][image/color paketida]] e'lon qilingan
+
+.play methods/images.go
+
+* Mashq: Sur'atlar
+
+Avval yaratgan rasm generatoringiz yodingizdami? Keling yana bittasini yozamiz, ammo bu safar u ma'lumotlar qirqimi oo'rniga `image.Image` ni qaytaradi.
+
+O'zingizni `Image` turingizni aniqlang, [[http://golang.org/pkg/image/#Image][zarur metodlarni]] qo'llang va `pic.ShowImage` ni chaqiring.
+
+`Bounds` metodi `image.Rect(0,`0,`w,`h)` ga o'xshash `image.Rectangle` ni qaytarishi kerak.
+
+`ColorModel` metodi esa `color.RGBAModel` ni qaytarishi kerak.
+
+`At` rang qaytarishi kerak; oxirgi rasm generatoridagi `v` qiymati `color.RGBA{v,`v,`255,`255}` ning bittasiga mos keladi.
+
+.play methods/exercise-images.go
+
+* Tabriklaymiz!
+
+Siz ushbu mashg`ulotni yakunladingiz!
+
+Siz [[/list][modullar]] ro`yhatiga qaytishingiz va nimani o'rganishni xohlasangiz shuni tanlashingiz mumkin, yoki [[javascript:click('.next-page')][navbatdagi]]ni bosib keyingi mashg`ulotga o`tishingiz mumkin.

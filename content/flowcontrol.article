@@ -1,0 +1,133 @@
+Oqimni boshqaruvchi operatorlar: for, if, else, switch va defer
+Qanday qilib sizni kodingizda oqimni shartlar, loop(takrorlanish)lar, switch(uzuvchi)lar va defer(ushlab turish)lar orqali boshqarish mumkinligini o`rgatadi.
+
+Go mualliflari
+http://golang.org
+
+* For
+
+Go faqat bitta takrorlanish konstruktoriga  ega bo'lib u ham bo'lsa `for`.
+
+`for` asosi C yoki Java dagi kabi bo'lib faqat farqi shundaki `(`)` qavslar ishlatilmaydi va `{`}` tizim qavslari talab etiladi.
+
+.play flowcontrol/for.go
+
+* For davomi
+
+C yoki Java dagi kabi siz pre va post operatorlarini tashlab ketishingiz mumkin.
+
+.play flowcontrol/for-continued.go
+
+* For bu Go dagi "while"
+
+Mana shu joyda siz nuqtali vergulni tashlab ketishingiz mumkin: C ning `while` Go da `for` bilan bajariladi.
+
+.play flowcontrol/for-is-gos-while.go
+
+* Doimiylik
+
+Agar siz takrorlanish shartini tashlab ketsangiz takrorlanish doimiy bo'lib qoladi, shu sababli cheksiz davomiy takrorlanishda ushbu usul qo'llaniladi.
+
+.play flowcontrol/forever.go
+
+* If
+
+`if` operatori ham C yoki Java dagi kabi qaraladi, faqat unda `(`)` qavslar ishlatilmaydi va `{`}` tizimli qavslar talab etiladi.
+
+(Ovoz tanishmi?)
+
+.play flowcontrol/if.go
+
+* If qisqa operator bilan birga
+
+`for` kabi `if` operatori shartga qadar qisqa operator bilan boshlanishi mumkin.
+
+Ushbu operatorlar ichida e'lon qilingan o'zgaruvchilar yashash chegarasi `if` operatorining tugashi(}) qadardir.
+
+(Oxirgi return operatorida `v` ni ishlatishga urinib ko'ring.)
+
+.play flowcontrol/if-with-a-short-statement.go
+
+* If va else
+
+`if` operatorining qisqa operatori ichida e'lon qilingan o'zgaruvchilar `else` bloki ichida ham yashaydi va u yerda ham ularni qo'llash mumkin bo'ladi.
+
+.play flowcontrol/if-and-else.go
+
+* Mashq: Takrorlanishlar va funksiyalar
+
+Funksiyalar va takrorlanishlarni o'ynab ko'rishning eng sodda yo'li bu Nyuton usuli yordamida kvadrat ildizni qo'llashdir.
+
+Ushbu vaziyatda, Nyuton usuli bu _z_ nuqtadan boshlab yig'ish va shuni takrorlab `Sqrt(x)` ga yaqinlashishdir:
+
+.image /content/img/newton.png
+
+Boshiga oddiygina 10 marta takrorlashni amalga oshirib va (1, 2, 3, ...) o'zgaruvchan qiymatlar uchun qanchalik siz yaqin qiymatlarni olar ekansiz shuni ko'rish kerak.
+
+Keyin, takrorlanish shartini to'xtatish uchun o'zgartiring bu vaqtda qiymat to'xtatish qiymatiga teng bo'lishi kerak(yoki faqat juda kichik deltalar bo'yicha o'zgartiriladi). Ko'ring agar ko'p yoki kam iteratsiya bo'lsa.  Qanchalik siz yaqinsiz quyidagiga [[http://golang.org/pkg/math/#Sqrt][math.Sqrt]]?
+
+Eslatma: float turidagi o'zgaruvchini e'lon qilish yoki qiymatlash uchun unga float sintaksisidagi qiymatni qiymatlang yoki konvertatsiya(bir formatdan ikkinchi formatga o'tkazish)ni amalga oshiring:
+
+	z := float64(1)
+	z := 1.0
+
+.play flowcontrol/exercise-loops-and-functions.go
+
+* Switch
+
+Siz balki bilarsiz, `switch` tanlash ko'rinishida ishlaydi.
+
+Vaziyat tanasi avtomatik tarzda chiqib ketish komandasini ishlatadi agarda albatta unga qadar hech qanday xatolik yuz bermasa ya'ni `fallthrough` operatori ishlamasa.
+
+.play flowcontrol/switch.go
+
+* Switch tanlash tartibi
+
+Switch vaziyatlarni baholashni yuqoridan pastga qarab amalga oshiradi, agarda biror vaziyat bajarilsa u holda switch bloki ishini yakunlaydi.
+
+(Misol uchun,
+
+	switch i {
+	case 0:
+	case f():
+	}
+
+does not call `f` if `i==0`.)
+
+#appengine: *Izoh:* Go playgroundda vaqt har doim 
+#appengine: 2009-11-10 23:00:00 UTC dan boshlanadi, nimaga bunday qiymat qabul qilishi
+#appengine: o`quvchi uchun topshiriq sifatida qoldiriladi.
+
+.play flowcontrol/switch-evaluation-order.go
+
+* Switch shartsiz qo'llanilishi
+
+Switch shartsiz bu  `switch`true` deganidir.
+
+Ushbu konstruksiya if-then-else turidagi uzun zanjirlarni yaratishdagi toza usul bo'lsa ajab emas.
+
+.play flowcontrol/switch-with-no-condition.go
+
+* Defer
+
+Defer operatori funksiyani bajarilishini funksiya natija qaytarmagunicha ushlab turadi.
+
+Kechiktirilgan funksiya argumentlari darhol hisoblab olinadi biroq funksiya o'zi toki uni o'z ichiga olgan funksiya natija qaytarmagunicha chaqirilmaydi. 
+
+.play flowcontrol/defer.go
+
+* Deferlar tahlanishi
+
+Deferred function calls are pushed onto a stack. When a function returns, its
+deferred calls are executed in last-in-first-out order.
+
+defer operatorlari haqida ko'proq ma'lumotni olish uchun quyidagini o'qing
+[[http://blog.golang.org/defer-panic-and-recover][blog post]].
+
+.play flowcontrol/defer-multi.go
+
+* Tabriklaymiz!
+
+Siz ushbu mashg`ulotni yakunladingiz!
+
+Siz [[/list][modullar]] ro`yhatiga qaytishingiz va nimani o'rganishni xohlasangiz shuni tanlashingiz mumkin, yoki [[javascript:click('.next-page')][navbatdagi]]ni bosib keyingi mashg`ulotga o`tishingiz mumkin.
