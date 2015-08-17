@@ -17,7 +17,8 @@ Kelishuv bo'yicha paket nomi ko'rsatilgan yo'lning oxirgi elementining nomi bila
 #appengine: *Izoh:* ushbu dasturlar bajarilayotgan muhitlar ajralgan (deterministik ko'rinishida),
 #appengine: shu sababli `rand.Intn` har doim bir xil sonni qaytaradi.
 #appengine:
-#appengine: (Turli sonlarni generatsiya qilib olish uchun sonlar generatoridan foydalanish kerak; [[http://golang.org/pkg/math/rand/#Seed][`rand.Seed`]] ga qarang.)
+#appengine: (Turli sonlarni generatsiya qilib olish uchun sonlar generatoridan foydalanish kerak; 
+#appengine: [[http://golang.org/pkg/math/rand/#Seed][`rand.Seed`]] ga qarang.)
 
 .play basics/packages.go
 
