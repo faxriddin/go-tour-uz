@@ -6,7 +6,7 @@ http://golang.org
 
 * Metodlar
 
-Go klasslarsiz ishlaydi. Bunga qaramasdan siz tuzilma turida metodalrni aniqlashingiz mumkin.
+Go klasslarsiz ishlaydi. Bunga qaramasdan siz struct turida metodalrni aniqlashingiz mumkin.
 
 _metod_qabul_qiluvchi_ argumentlar ro'yhatida kelib `func` kalit so'zi bilan metod nomi orasida bo'ladi.
 
@@ -14,7 +14,7 @@ _metod_qabul_qiluvchi_ argumentlar ro'yhatida kelib `func` kalit so'zi bilan met
 
 * Metodlar davomi
 
-Siz metodni paketingizda e'lon qilingan turlardan foydalanib _ixtiyoriy_ turda e'lon qilishingiz mumkin faqat tuzilma turida  emas.
+Siz metodni paketingizda e'lon qilingan turlardan foydalanib _ixtiyoriy_ turda e'lon qilishingiz mumkin faqat struct turida  emas.
 
 Bundan tashqari siz metod turini boshqa paketdagidan foydalanib ham ko'rsata olmaysiz (shuningdek qurilgan turlarni ham ishlata olmaysiz).
 
@@ -26,7 +26,7 @@ Metodlar turlar nomi bilan yoki turlar nomiga ko'rsatuvchilar bilan bog'langan b
 
 Biz xozir ikkita `Abs` metodlarini ko'rdik. Biri `*Vertex` turiga ko'rsatishini va ikkinchisi `MyFloat` qiymat turiga bog'langanligini ko'rdik.
 
-Ko'rsatkichli qabul qiluchini ishlatishni ikkita sababi bor. Birinchisi, har safar netodni chaqirganda qiymatni nusxalashdan qochish (agar qiymat turi katta tuzilmadan iborat bo'lsa bu yanada samarali bo'ladi). Ikkinchisi, metod qabul qilgan qiymatni ham o'zgartira oladigan bo'ladi.
+Ko'rsatkichli qabul qiluchini ishlatishni ikkita sababi bor. Birinchisi, har safar netodni chaqirganda qiymatni nusxalashdan qochish (agar qiymat turi katta structdan iborat bo'lsa bu yanada samarali bo'ladi). Ikkinchisi, metod qabul qilgan qiymatni ham o'zgartira oladigan bo'ladi.
 
 `Abs` va `Scale` e'lonlarni `*Vertex` dan `Vertex` ga almashtirib ishlatib ko'ring.
 
@@ -137,7 +137,7 @@ Goning standart kutubxonasi o'zida [[http://golang.org/search?q=Read#Global][ko'
 
 	func (T) Read(b []byte) (n int, err error)
 
-`Read` baytli qirqimni ma'lumotlar bilan to'ldiradi va to'ldirilgan baytlar sonini va xatolikni qaytaradi. U oqim tugab qolsa `io.EOF` xatolikni qaytaradi.
+`Read` baytli sliceni ma'lumotlar bilan to'ldiradi va to'ldirilgan baytlar sonini va xatolikni qaytaradi. U oqim tugab qolsa `io.EOF` xatolikni qaytaradi.
 
 Ushbu misol 
 [[//golang.org/pkg/strings/#Reader][`strings.Reader`]] ni yaratayabdi va o'z chiqarishlarida bir martada 8 baytni qo'llayabdi.
@@ -229,7 +229,7 @@ Misol uchun, quyidagilarni ishlatib siz boshqaruvchilarni ro'yhatdan o'tkazishga
 
 * Mashq: Sur'atlar
 
-Avval yaratgan rasm generatoringiz yodingizdami? Keling yana bittasini yozamiz, ammo bu safar u ma'lumotlar qirqimi oo'rniga `image.Image` ni qaytaradi.
+Avval yaratgan rasm generatoringiz yodingizdami? Keling yana bittasini yozamiz, ammo bu safar u ma'lumotlar slicei oo'rniga `image.Image` ni qaytaradi.
 
 O'zingizni `Image` turingizni aniqlang, [[http://golang.org/pkg/image/#Image][zarur metodlarni]] qo'llang va `pic.ShowImage` ni chaqiring.
 

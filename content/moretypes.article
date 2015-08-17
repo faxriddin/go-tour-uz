@@ -1,10 +1,10 @@
-Ko'p turlilar:  tuzilma(struct)lar, qirqim(slice)lar va xarita(map) lar.
+Ko'p turlilar:  struct(tuzilma)lar, slice(qirqim)lar va map(xarita)lar.
 Qanday qilib mavjud bo'lgan bir tur asosida boshqa turlarni aniqlashni o'rgatadi.  Bu mashg'ulot struct - tuzilma, array - massiv, slice - qirqim va map -xaritani o'z ichiga oladi.
 
 Go mualliflari
 http://golang.org
 
-* Ko'rsatkichlar
+* Pointer - Ko'rsatkich
 
 Go ko'rsatkichlarga ega.
 Ko'rsatkichlar qiymat sifatida xotira manzilini saqlaydi.
@@ -29,35 +29,35 @@ C dan farqli ravishda, Go ko'rsatkichlar ustida arithmetic amallar bajara olmayd
 
 .play moretypes/pointers.go
 
-* Tuzilmalar
+* Struct - Tuzilma
 
 `struct` bu maydonlar kolleksiyasi.
 
-(Va e'lon qilingan `tur`  siz kutgan ishni bajaradi.)
+(Va e'lon qilingan `tur` siz kutgan ishni bajaradi.)
 
 .play moretypes/structs.go
 
-* Tuzilma maydonlari
+* Struct maydonlari
 
-Tuzilma maydonlariga murojaat nuqta orqali bajariladi.
+Struct maydonlariga murojaat nuqta orqali bajariladi.
 
 .play moretypes/struct-fields.go
 
-* Tuzilmalarga ko'rsatkichlar
+* Structga ko'rsatuvchilar
 
-Tuzilmalar maydonlariga murojaat tuzilma ko'rsatkichi orqali amalga oshirilishi mumkin.
+Structlar maydonlariga murojaat struct ko'rsatkichi orqali amalga oshirilishi mumkin.
 
-Mantiqiy manzillarni fizik manzillarga ko'rsatkichlar orqali o'tkazish shaffof.
+Mantiqiy manzillarni fizik manzillarga ko'rsatkichlar orqali o'tkazish bexato ishlaydi.
 
 .play moretypes/struct-pointers.go
 
-* Literalli tuzilmalar
+* Literalli structlar
 
-Literalli tuzilmalar o'zining maydonlarini qiymatlarida tuzilmalar yotishini anglatadi.
+Literalli structlar o'zining maydonlarini qiymatlarida structlar yotishini anglatadi.
 
 Siz qism to'plamlar maydonlarini `Name:` ni qo'llab hisoblab chiqishingiz mumkin. (Va nomlarning tartibi ahamiyat kasb etmaydi.)
 
-Maxsus `&` old qo'shimcha belgi tuzilma qiymatiga ko'rsatkichni qaytaradi.
+Maxsus `&` old qo'shimcha belgi struct qiymatiga ko'rsatkichni qaytaradi.
 
 .play moretypes/struct-literals.go
 
@@ -77,17 +77,17 @@ Go massivlar bilan ishlashga mos keladigan yo'lni yetkazib beradi.
 
 .play moretypes/array.go
 
-* Qirqimlar
+* Slicelar
 
-Qirqim massiv qiymatlariga ko'rsatadi va shuningdek uzunligini ham qo'shadi.
+Slice massiv qiymatlariga ko'rsatadi va shuningdek uzunligini ham qo'shadi.
 
-`[]T` bu elementlari `T` turdagi qirqim.
+`[]T` bu elementlari `T` turdagi slice.
 
 .play moretypes/slices.go
 
-* Qirqimlarni qirqish
+* Slicelarni qirqish
 
-Qirqimlar yana qirqilgan bo'lishi mumkin. Ushbu qirqim qiymati yana ham ana shu massivga ko'rsatuvchi yangi qirqimni yaratgan bo'ladi.
+Slicelar yana qirqilgan bo'lishi mumkin. Ushbu slice qiymati yana ham ana shu massivga ko'rsatuvchi yangi sliceni yaratgan bo'ladi.
 
 Quyidagi ifoda
 
@@ -105,9 +105,9 @@ bitta element.
 
 .play moretypes/slicing-slices.go
 
-* Qirqimlarni yaratish
+* Slicelarni yaratish
 
-Qirqimlar `make` funksiyasi bilan yaratiladi.  U yangi nol qiymatli massiv yaratib so'ngra unga murojaat qiluvchi qirqimni qaytaradi:
+Slicelar `make` funksiyasi bilan yaratiladi.  U yangi nol qiymatli massiv yaratib so'ngra unga murojaat qiluvchi sliceni qaytaradi:
 
 	a := make([]int, 5)  // len(a)=5
 
@@ -120,35 +120,35 @@ Hajmini ko'rsatish uchun `make` ning uchinchi argumentini ham ishlatish kerak:
 
 .play moretypes/making-slices.go
 
-* Nil qirqimlar
+* Nil slicelar
 
-Qirqimlarning nol qiymati `nil`.
+Slicelarning nol qiymati `nil`.
 
-nil qiymatli qirqimning uzunligi ham hajmi ham 0 ga teng.
+nil qiymatli slicening uzunligi ham hajmi ham 0 ga teng.
 
 .play moretypes/nil-slices.go
 
-* Qirqimlarga element qo'shish
+* Slicelarga element qo'shish
 
-Qirqimga element qo'shish uchun umumiy hisoblangan `append` funksiyasi qo'llaniladi.
+Slicega element qo'shish uchun umumiy hisoblangan `append` funksiyasi qo'llaniladi.
 [[http://golang.org/pkg/builtin/#append][Qo'llanma]]
 ichki qurilgan `append` funksiyasini sharhlab beradi.
 
 	func append(s []T, vs ...T) []T
 
-`append` dagi `s` birinchi parametr bu `T` turidagi qirqim, qolganllari esa qirqimga qo'shiladigan `T` turdagi qiymatlar.
+`append` dagi `s` birinchi parametr bu `T` turidagi slice, qolganllari esa slicega qo'shiladigan `T` turdagi qiymatlar.
 
-`append` funksiyasining natijasi bu qirqimning qiymatlari va plyus unga qo'shilayotgan barcha qiymatlar qo'shilgan qirqim bo'ladi.
+`append` funksiyasining natijasi bu slicening qiymatlari va plyus unga qo'shilayotgan barcha qiymatlar qo'shilgan slice bo'ladi.
 
-Agar orqa fondagi ajratilgan massiv qiymatlarni qo'llab quvvatlash uchun kamlik qilsa yana massiv ajratiladi. Qaytarilgan qirqim yangi taqsimlangan massivga murojaat qila boshlaydi.
+Agar orqa fondagi ajratilgan massiv qiymatlarni qo'llab quvvatlash uchun kamlik qilsa yana massiv ajratiladi. Qaytarilgan slice yangi taqsimlangan massivga murojaat qila boshlaydi.
 
-(Qirqimlar haqida ko'proq ma'lumot olish uchun [[http://blog.golang.org/go-slices-usage-and-internals][Slices: usage and internals]] maqolasini o'qing.)
+(Slicelar haqida ko'proq ma'lumot olish uchun [[http://blog.golang.org/go-slices-usage-and-internals][Slices: usage and internals]] maqolasini o'qing.)
 
 .play moretypes/append.go
 
 * Range (qator)
 
-`for` takrorlanish operatorining `range` qator shakli xarita yoki qirqimlar uchun qo'llanilishi mumkin.
+`for` takrorlanish operatorining `range` qator shakli map yoki slicelar uchun qo'llanilishi mumkin.
 
 .play moretypes/range.go
 
@@ -160,9 +160,9 @@ Agar siz faqat indekslarni olishni xohlayotgan bo'lsangiz u holda ", value" ni o
 
 .play moretypes/range-continued.go
 
-* Mashq: Qirqimlar
+* Mashq: Slicelar
 
-`Pic` ni ishchi holatga keltiring. U uzunligi `dy` ga teng bo'lgan va har bir elementi uzunligi `dx` qiymati esa 8-bitli ishorasiz int (uint8)li qirqimni qaytarishi kerak. Qachon siz dasturni ishga tushirsangiz, u sonlarni qo'llab sizni kulrangni shkalasini (ko'krangni) rasm tarzida namoyish etishi kerak.
+`Pic` ni ishchi holatga keltiring. U uzunligi `dy` ga teng bo'lgan va har bir elementi uzunligi `dx` qiymati esa 8-bitli ishorasiz int (uint8)li sliceni qaytarishi kerak. Qachon siz dasturni ishga tushirsangiz, u sonlarni qo'llab sizni kulrangni shkalasini (ko'krangni) rasm tarzida namoyish etishi kerak.
 
 Rasmni tanlash sizga bog'liq. Qiziqarli funksiyalar `(x+y)/2`, `x*y` va `x^y` larni o'z ichiga oladi.
 
@@ -172,29 +172,29 @@ Rasmni tanlash sizga bog'liq. Qiziqarli funksiyalar `(x+y)/2`, `x*y` va `x^y` la
 
 .play moretypes/exercise-slices.go
 
-* Xaritalar
+* Maplar
 
-Xarita bu qiymatlar uchun kalitlar xaritasi.
+Map bu qiymatlar uchun kalitlar mapi.
 
-Xaritalar ishlatilishidan oldin `make`(`new` emas) yordamida yaratilishi kerak; `nil` xarita bo'mbo'sh va uni biriktirib bo'lmaydi.
+Maplar ishlatilishidan oldin `make`(`new` emas) yordamida yaratilishi kerak; `nil` map bo'sh va uni biriktirib bo'lmaydi.
 
 .play moretypes/maps.go
 
-* Literalli xaritalar
+* Literalli maplar
 
-Literalli xaritalar literalli tuzilmalarga o'xshaydi, ammo bunda kalitlar talab etiladi.
+Literalli maplar literalli structlarga o'xshaydi, ammo bunda kalitlar talab etiladi.
 
 .play moretypes/map-literals.go
 
-* Literalli xaritalar davomi
+* Literalli maplar davomi
 
 Agar tur nomi yuqorida turlanishda keltirilgan bo'lsa u holda uni elementlar qiymatlarida ko'rsatish shart emas. Masalan misoldagi Vertex so'zi yuqorida e'lon qilinganligi bois quyida elementlar qiymatlarida ko'rsatilmagan.
 
 .play moretypes/map-literals-continued.go
 
-* Xaritalar ko'rinishini o'zgartirish
+* Maplar ko'rinishini o'zgartirish
 
-`m` xaritasiga element qo'yish yoki uni elementini o'zgartirish:
+`m` mapga element qo'yish yoki uni elementini o'zgartirish:
 
 	m[key] = elem
 
@@ -206,17 +206,17 @@ Elementni o'chirish:
 
 	delete(m, key)
 
-`key` indeksli xaritaning elementi borligini ikkita o'zgaruvchiga biriktirish bilan tekshirish:
+`key` indeksli mapning elementi borligini ikkita o'zgaruvchiga biriktirish bilan tekshirish:
 
 	elem, ok = m[key]
 
-Agar `key` `m` da bor bo'lsa `ok` rost ya'ni `true`. Agar yo'q bo'lsa `ok` yolg'on `false` va `elem` xaritaning elementining turiga tegishli bo'lgan nol qiymatni oladi.
+Agar `key` `m` da bor bo'lsa `ok` rost ya'ni `true`. Agar yo'q bo'lsa `ok` yolg'on `false` va `elem` mapning elementining turiga tegishli bo'lgan nol qiymatni oladi.
 
-Shu tarzda qachon xaritadan o'qisaku lekin biz so'ragan kalitli element yo'q bo'lsa natija xarita elementining turiga mos nol qiymat bo'ladi.
+Shu tarzda qachon mapdan o'qisaku lekin biz so'ragan kalitli element yo'q bo'lsa natija map elementining turiga mos nol qiymat bo'ladi.
 
 .play moretypes/mutating-maps.go
 
-* Mashq: Xaritalar
+* Mashq: Maplar
 
 `WordCount` ni ishchi holatga keltiring. U `s` satridagi har bir "so'zning" sonini qaytarishi kerak. `wc.Test` funksiya ishga tushib siz keltirgan funksiyani tekshirib uni muvaffaqiyatli bajarilganligini yoki bajarilmaganligini tekshiradi.
 

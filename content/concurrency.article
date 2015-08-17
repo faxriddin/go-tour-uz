@@ -30,7 +30,7 @@ Kanallar turlangan trubalar bo'lib ular orqali siz qiymatlarni jo'natish yoki ka
 
 (Ma'lumot yo'naltiruvvchiga qarab oqadi.)
 
-Xaritalar va qirqimlar kabi kanallar ham ishlatilishidan oldin yaratilgan bo'lishi kerak:
+Maplar va slicelar kabi kanallar ham ishlatilishidan oldin yaratilgan bo'lishi kerak:
 
 	ch := make(chan int)
 

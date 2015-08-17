@@ -34,8 +34,6 @@ Agar siz takrorlanish shartini tashlab ketsangiz takrorlanish doimiy bo'lib qola
 
 `if` operatori ham C yoki Java dagi kabi qaraladi, faqat unda `(`)` qavslar ishlatilmaydi va `{`}` tizimli qavslar talab etiladi.
 
-(Ovoz tanishmi?)
-
 .play flowcontrol/if.go
 
 * If qisqa operator bilan birga
@@ -56,9 +54,9 @@ Ushbu operatorlar ichida e'lon qilingan o'zgaruvchilar yashash chegarasi `if` op
 
 * Mashq: Takrorlanishlar va funksiyalar
 
-Funksiyalar va takrorlanishlarni o'ynab ko'rishning eng sodda yo'li bu Nyuton usuli yordamida kvadrat ildizni qo'llashdir.
+Funksiyalar va takrorlanishlarni amalda sinab ko'rishning eng sodda yo'li bu Nyuton usuli yordamida kvadrat ildizni hisoblashdir.
 
-Ushbu vaziyatda, Nyuton usuli bu _z_ nuqtadan boshlab yig'ish va shuni takrorlab `Sqrt(x)` ga yaqinlashishdir:
+Ushbu vaziyatda, Nyuton usuli bu _z_ nuqtadan boshlab yig'ish va shuni takrorlab `Sqrt(x)` ga yaqinlashdir:
 
 .image /content/img/newton.png
 
@@ -66,7 +64,7 @@ Boshiga oddiygina 10 marta takrorlashni amalga oshirib va (1, 2, 3, ...) o'zgaru
 
 Keyin, takrorlanish shartini to'xtatish uchun o'zgartiring bu vaqtda qiymat to'xtatish qiymatiga teng bo'lishi kerak(yoki faqat juda kichik deltalar bo'yicha o'zgartiriladi). Ko'ring agar ko'p yoki kam iteratsiya bo'lsa.  Qanchalik siz yaqinsiz quyidagiga [[http://golang.org/pkg/math/#Sqrt][math.Sqrt]]?
 
-Eslatma: float turidagi o'zgaruvchini e'lon qilish yoki qiymatlash uchun unga float sintaksisidagi qiymatni qiymatlang yoki konvertatsiya(bir formatdan ikkinchi formatga o'tkazish)ni amalga oshiring:
+Eslatma: float turidagi o'zgaruvchini e'lon qilish yoki qiymatlash uchun unga float sintaksisidagi qiymatni o'zlashtiring yoki konvertatsiya(bir formatdan ikkinchi formatga o'tkazish)ni amalga oshiring:
 
 	z := float64(1)
 	z := 1.0
@@ -92,7 +90,7 @@ Switch vaziyatlarni baholashni yuqoridan pastga qarab amalga oshiradi, agarda bi
 	case f():
 	}
 
-does not call `f` if `i==0`.)
+agar `i==0` bo'lsa `f` chaqirilmaydi.)
 
 #appengine: *Izoh:* Go playgroundda vaqt har doim 
 #appengine: 2009-11-10 23:00:00 UTC dan boshlanadi, nimaga bunday qiymat qabul qilishi
@@ -118,8 +116,7 @@ Kechiktirilgan funksiya argumentlari darhol hisoblab olinadi biroq funksiya o'zi
 
 * Deferlar tahlanishi
 
-Deferred function calls are pushed onto a stack. When a function returns, its
-deferred calls are executed in last-in-first-out order.
+Defer qilingan amallar stack(navbat)ga yoziladi. Qachon funksiya ishini tugatsa, shunda defer qilingan amallar "oxirgi kirgan birinchi chiqadi" tartibi bõyicha bajariladi.
 
 defer operatorlari haqida ko'proq ma'lumotni olish uchun quyidagini o'qing
 [[http://blog.golang.org/defer-panic-and-recover][blog post]].

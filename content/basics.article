@@ -8,16 +8,16 @@ http://golang.org
 
 Har bir Go dastur packetni yasaydi.
 
-Ishga tushiriladigan dasturlar `main` paketi bilan boshlanadi.
+Go da har bir ishga tushiriladigan dastur `main` paketi bilan boshlanadi.
 
-Ushbu dastur import yo'li bilan `"fmt"` va `"math/rand"` paketlarini qo'llayabdi.
+Ushbu dastur import qilish yo'li bilan `"fmt"` va `"math/rand"` paketlarini qo'llayabdi.
 
-Konventsiya bo'yicha paket nomi ko'rsatilgan yo'ldagi oxirgi element nomi bilan bir xil bo'ladi. Masalan, `"math/rand"` paketi  o'zida `package`rand` operatori bilan boshlanadigan fayliga ega.
+Kelishuv bo'yicha paket nomi ko'rsatilgan yo'lning oxirgi elementining nomi bilan bir xil bo'ladi. Masalan, `"math/rand"` paketi  o'zida `package`rand` operatori bilan boshlanadigan fayliga ega.
 
-#appengine: *Izoh:* ushbu dasturlar bajarilayotgan muhitlar ajralgan (deterministik ko'rinishida)
+#appengine: *Izoh:* ushbu dasturlar bajarilayotgan muhitlar ajralgan (deterministik ko'rinishida),
 #appengine: shu sababli `rand.Intn` har doim bir xil sonni qaytaradi.
 #appengine:
-#appengine: (Turli sonlarni olish uchun sonlar generatoridan foydalanish kerak; [[http://golang.org/pkg/math/rand/#Seed][`rand.Seed`]] ga qarang.)
+#appengine: (Turli sonlarni generatsiya qilib olish uchun sonlar generatoridan foydalanish kerak; [[http://golang.org/pkg/math/rand/#Seed][`rand.Seed`]] ga qarang.)
 
 .play basics/packages.go
 
@@ -38,7 +38,7 @@ Ammo yuqoridagi usul bir joyga yig'ib import qilishning yaxshi usuli.
 
 Paket import qilingach siz unga eksport qilish davomida nomi bo'yicha murojaat qilishingiz mumkin.
 
-Go da nom eksport qilingan hisoblanadi agarda nom bosh xarfi katta bo'lsa.
+Go da `nom` eksport qilingan hisoblanadi agarda uning bosh xarfi katta bo'lsa.
 
 `Foo` bu eksport qilingan nom,`FOO` ham xuddi shunday. `foo` esa eksport qilinmagan hisoblanadi.
 
@@ -48,11 +48,11 @@ Kodni ishga tushiring. `math.pi` ni `math.Pi` ga qayta nomlang va yana qayta ish
 
 * Funksiyalar
 
-Funksiyalar nolta yoki ko'p argument qabul qilishi mumkin.
+Funksiya bir nechta argument qabul qilishi yoki umuman qabul qilmasligi ham mumkin.
 
-Ushbu misolda `add` ikkita `int` turidagi argumentni oladi.
+Ushbu misolda `add` ikkita `int` turidagi argumentni qabul qilib oladi.
 
-Eslatma tur nomi o'zgaruvchi nomidan _keyin_ keladi.
+Eslatma: tur nomi o'zgaruvchi nomidan _keyin_ keladi.
 
 (Nimaga turlar bunday kelishi haqida ko'proq ma'lumot olish uchun [[http://blog.golang.org/gos-declaration-syntax][Goning e'lon qilish sintaksisi]] ga qarang.)
 
@@ -176,7 +176,7 @@ Misoldagi `float64` yoki `int` o'tkazishlarni o'chiring va nima yuz berishini ko
 
 * Tur xulosasi
 
-Agar o'zgaruvchi uning maxsus turisiz e'lon qilinsa   When declaring a variable without specifying its type (`var` ni tursiz yoki `:=` sintaksis) o'zgaruvchining turi o'ng qo'l tomondagi qiymatdan _xulosalanadi_.
+Agar o'zgaruvchi uning maxsus turisiz e'lon qilinsa (`var` ni tursiz yoki `:=` sintaksis) o'zgaruvchining turi o'ng qo'l tomondagi qiymatdan _xulosalanadi_.
 
 Agar o'ng qo'l tomon turlangan bo'lsa u holda yangi o'zgaruvchi ham shu turni qabul qiladi:
 
