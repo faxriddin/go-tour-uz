@@ -34,10 +34,10 @@ Ushbu misolli namoyishlar Go ni boshqa qirralarini ko'rsatib beradi. Sayohatdagi
 Dasturni tahrirlang va yana ishga tushiring.
 
 Aytgancha agar siz [[javascript:highlightAndClick("#format")][Format]] yoki `ctrl-enter`
-ni bossangiz tahrirlovchi ichidagi matn [[http://golang.org/cmd/gofmt/][gofmt]] uskunadan foydalanib formatlanadi. 
+ni bossangiz tahrirlovchi ichidagi matn [[http://golang.org/cmd/gofmt/][gofmt]] dasturdan foydalanib formatlanadi. 
 Siz sintaksisni rangli formatlash stilidan foydalanish maqsadida ushbu imkniyatni yoqib qo'yish uchun  [[javascript:highlightAndClick(".syntax-checkbox")][syntax]] tugmasini bosing.
 
-Qachonki siz siljish uchun tayyor bo'lsangiz [[javascript:highlightAndClick(".next-page")][o'ng yo'naltiruvchi]] ni bosing yoki `PageDown` tugmasidan foydalaning.
+Agar siz sayohatni davom ettirishga tayyor bo'lsangiz [[javascript:highlightAndClick(".next-page")][o'ng yo'naltiruvchi]] ni bosing yoki `PageDown` tugmasidan foydalaning.
 
 .play welcome/hello.go
 
@@ -58,7 +58,7 @@ Sayohat boshqa tillarda ham mavjud:
 - [[http://tour.go-zh.org/][Soddalashtirilgan Xitoycha — 中文（简体）]]
 - [[http://go-tour-zh-tw.appspot.com/][Ananaviy Xitoycha — 中文（繁體）]]
 - [[http://go-tour-ua.appspot.com/][Ukraincha — Українська]]
-- [[http://go-tour-uz.appspot.com/][O'zbekcha Lotin alifbosida — O'zbekcha (lotin alifbosida)]]
+- [[http://go-tour-uz.appspot.com/][Uzbek — O'zbekcha (lotin alifbosida)]]
 
 Davom etish uchun [[javascript:highlightAndClick(".next-page")]["navbatdagi"]] tugmani yoki `PageDown` ni bosing.
 
@@ -84,6 +84,6 @@ Davom etish uchun [[javascript:highlightAndClick(".next-page")]["navbatdagi"]] t
 
 * Tabriklaymiz!
 
-Siz sayohatning birinchi modulini tugatdingiz!
+Siz sayohatning birinchi bosqichini tugatdingiz!
 
-Boshqa o'rganmoqchi bo'lgan modullaringizga o'tish uchun [[javascript:highlightAndClick(".logo")][Go bo'yicha sayohat]] ustida bosing, yana boshqa yo'l bilan yurganda siz Go haqida o'rganib yoki to'g'ridan-to'g'ri [[javascript:click('.next-page')][navbatdagi dars]] bosishingiz mumkin.
+Boshqa o'rganmoqchi bo'lgan mavzularga o'tish uchun [[javascript:highlightAndClick(".logo")][Goga sayohat]] ustida bosing, yana boshqa yo'l bilan yurganda siz Go haqida o'rganishni bosqichma-bosqich davom ettirib [[javascript:click('.next-page')][navbatdagi dars]]ni bosishingiz mumkin.
