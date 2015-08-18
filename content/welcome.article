@@ -8,20 +8,20 @@ http://golang.org
 
 [[http://golang.org/][Go dasturlash tiliga]] sayohatga xush kelibsiz!
 
-Sayohat modullar ro'yhatiga ajratilgan bo'lib siz ularga bo'lgan murojaatni sahifaning chap yuqori qismida joylashgan 
-[[javascript:highlight(".logo")][Go bo'yicha sayohat]] ni bosgan holda olishingiz mumkin.
+Sayohat mavzular ro'yhatiga ajratilgan bo'lib siz ularga sahifaning chap yuqori qismida joylashgan 
+[[javascript:highlight(".logo")][Goga sayohat]] ni bosgan holda murojaatni qilishingiz mumkin.
 
 Siz yana ixtiyoriy vaqtda mundarijani sahifaning o'ng yuqori qismida joylashgan [[javascript:highlightAndClick(".nav")][menu]] ni bosgan holda ko'rishingiz mumkin.
 
 Xamma joyda siz ketma-ket slaydlar va topshiriqlarni birdamlikda ishlatishingiz mumkin bo'ladi.
 
-Siz ularni qo'llab bir joday ikkinchi joyga o'tishlarni amalga oshirishingiz mumkin bo'ladi
+Siz ularni qo'llab bir joydan ikkinchi joyga o'tishlarni amalga oshirishingiz mumkin bo'ladi
 
 - [[javascript:highlight(".prev-page")]["avvalgi"]] yoki `PageUp` avvalgi sahifaga o'tish uchun,
 
 - [[javascript:highlight(".next-page")]["navbatdagi"]] yoki `PageDown` navbatdagi sahifaga o'tish uchun.
 
-Sayohat interaktivli.
+Sayohat interaktivli(faol aloqali).
 [[javascript:highlightAndClick("#run")][Ishga tushirish]] tugmasini bosib siz xozirni o'zida kodni 
 #appengine: uzoq masofadagi serverda 
 o'z kompyuteringizda 
