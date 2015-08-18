@@ -6,7 +6,7 @@ http://golang.org
 
 * Metodlar
 
-Go klasslarsiz ishlaydi. Bunga qaramasdan siz struct turida metodalrni aniqlashingiz mumkin.
+Go klasslarsiz ishlaydi. Bunga qaramasdan siz struct turida metodlarni aniqlashingiz mumkin.
 
 _metod_qabul_qiluvchi_ argumentlar ro'yhatida kelib `func` kalit so'zi bilan metod nomi orasida bo'ladi.
 
