@@ -26,7 +26,7 @@ Metodlar turlar nomi bilan yoki turlar nomiga ko'rsatuvchilar bilan bog'langan b
 
 Biz xozir ikkita `Abs` metodlarini ko'rdik. Biri `*Vertex` turiga ko'rsatishini va ikkinchisi `MyFloat` qiymat turiga bog'langanligini ko'rdik.
 
-Ko'rsatkichli qabul qiluchini ishlatishni ikkita sababi bor. Birinchisi, har safar metodni chaqirganda qiymatni nusxalashdan qochish (agar qiymat turi katta structdan iborat bo'lsa bu yanada samarali bo'ladi). Ikkinchisi, metod qabul qilgan qiymatni ham o'zgartira oladigan bo'ladi.
+Ko'rsatkichli qabul qiluvchini ishlatishni ikkita sababi bor. Birinchisi, har safar metodni chaqirganda qiymatni nusxalashdan qochish (agar qiymat turi katta structdan iborat bo'lsa bu yanada samarali bo'ladi). Ikkinchisi, metod qabul qilgan qiymatni ham o'zgartira oladigan bo'ladi.
 
 `Abs` va `Scale` e'lonlarni `*Vertex` dan `Vertex` ga almashtirib ishlatib ko'ring.
 
