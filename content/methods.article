@@ -38,11 +38,11 @@ Ko'rsatkichli qabul qiluvchini ishlatishni ikkita sababi bor. Birinchisi, har sa
 
 * Interfeyslar
 
-Interfeys turi bu metodlar to'plami bilan aniqlanishidir.
+Interfeys bu - metodlar to'plamini aniqlash uchun xizmat qiluvchi tur.
 
-Interfeys turi qiymati ushbu metodlar qo'llagan ixtiyoriy qiymatlarni qabul qilishi mumkin.
+Interfeys turi qiymat sifatida ushbu metodlar qo'llagan ixtiyoriy qiymatlarni qabul qilishi mumkin.
 
-*Izoh:* kod satrining 22 satrida bitta xatolik bor.
+*Izoh:* kodning 22 satrida bitta xatolik bor.
 `Vertex` (qiymat turi) `Abser` ni qanoatlantirmaydi chunki 	
 `Abs` metod `*Vertex` (ko'rsatkichli tur) uchun aniqlangan.
 
@@ -50,12 +50,12 @@ Interfeys turi qiymati ushbu metodlar qo'llagan ixtiyoriy qiymatlarni qabul qili
 
 * Noaniq tarzda e'lon qilingan Interfeyslar
 
-Tur metodlarni qo'llash yo'li bilan interfeys turini yaratadi.
-U yerda o'lchamga tegishli aniq e'lonlar yo'q; "implements" kalit so'zi yo'q. 
+Interfeys turi metodlarni qo'llashni yo'lga qo'yish bilan yaratadi.
+Metodlar aniq bo'lgan maqsadli e'lonlari yo'q, "implements" kalit so'zi ham yo'q. 
 
-Aniq e'lon qilinmagan interfeyslar paketlarni boshqa paketlardan ishlatishni ajratmaydi: boshqalarga bog'liq emas.
+Aniq e'lon qilinmagan interfeyslar interfeys e'lon qilingan paketlarni ishlatilayotgan paketlardan ajratadi: boshqalarga hech qanday bog'liqlik yo'q bo'ladi.
 
-U yana aniq interfeyslarni e'lon qilishda yordam beradi, chunki siz har bir qo'llanilishni topib u interfeyslarni yangicha nomlashingiz kerak emas.
+U yana aniq interfeyslarni e'lon qilishda yordam beradi, chunki siz har bir interfeysning qo'llanilish joyini topib u interfeyslarni yangicha nomlashingiz kerak emas.
 
 [[http://golang.org/pkg/io/][io paketi]] `O'qishni` va `Yozishni` aniqlaydi; siz uni qilishingiz kerak emas.
 
@@ -154,7 +154,7 @@ Cheksiz oqimdan ASCII ning `'A'` belgisini ajratib olishni `Reader` turida bajar
 
 [[http://golang.org/pkg/io/#Reader][io.Reader]] umumiy qolipini oqimlarini ketishini o'zgartirish bu boshqa `io.Reader` o'ramoq deganidir.
 
-Masalan, [[http://golang.org/pkg/compress/gzip/#NewReader][gzip.NewReader]] funksiyasi `io.Reader` ni oladi va `io.Reader`(siqilmagan ma'lumotlar oqimi) ni qo'llab `*gzip.Reader`(siqilgan ma'lumotlar oqimi) ni qaytaradi  (a stream of the decompressed data).
+Masalan, [[http://golang.org/pkg/compress/gzip/#NewReader][gzip.NewReader]] funksiyasi `io.Reader` ni oladi va `io.Reader`(siqilmagan ma'lumotlar oqimi) ni qo'llab `*gzip.Reader`(siqilgan ma'lumotlar oqimi) ni qaytaradi.
 
 `rot13Reader` ni `io.Reader` ni qo'llab va `io.Reader` dan satrni o'qiydigan qilib ish holatiga keltiring, [[http://en.wikipedia.org/wiki/ROT13][rot13]]  ni qo'llab shifr o'rniga barcha alfavit belgilarini chiqarib oqimni o'zgartiring.
 
@@ -200,7 +200,7 @@ Misol uchun, quyidagilarni ishlatib siz boshqaruvchilarni ro'yhatdan o'tkazishga
 	http.Handle("/string", String("I'm a frayed knot."))
 	http.Handle("/struct", &Struct{"Hello", ":", "Gophers!"})
 
-#appengine: *Izoh:* Ushbu misqol Tour asosida web interfeys orqali  
+#appengine: *Izoh:* Ushbu misol Tour asosida web interfeys orqali  
 #appengine: ishlamaydi. Web serverlar yaratishga urinib ko'ring. Balki siz 
 #appengine: [[http://golang.org/doc/install/][Go ni o'rnatishni]] xohlarsiz.
 
