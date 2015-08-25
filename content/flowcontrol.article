@@ -14,13 +14,13 @@ Go faqat bitta takrorlanish konstruktoriga  ega bo'lib u ham bo'lsa `for`.
 
 * For davomi
 
-C yoki Java dagi kabi siz pre va post operatorlarini tashlab ketishingiz mumkin.
+C yoki Java dagi kabi siz pre(oldingi) va post(keyingi) operatorlarini tashlab ketishingiz mumkin.
 
 .play flowcontrol/for-continued.go
 
 * For bu Go dagi "while"
 
-Mana shu joyda siz nuqtali vergulni tashlab ketishingiz mumkin: C ning `while` Go da `for` bilan bajariladi.
+Mana shu joyda siz nuqtali vergulni tashlab ketishingiz mumkin: C ning `while`i Go da `for` bilan bajariladi.
 
 .play flowcontrol/for-is-gos-while.go
 
@@ -56,13 +56,13 @@ Ushbu operatorlar ichida e'lon qilingan o'zgaruvchilar yashash chegarasi `if` op
 
 Funksiyalar va takrorlanishlarni amalda sinab ko'rishning eng sodda yo'li bu Nyuton usuli yordamida kvadrat ildizni hisoblashdir.
 
-Ushbu vaziyatda, Nyuton usuli bu _z_ nuqtadan boshlab yig'ish va shuni takrorlab `Sqrt(x)` ga yaqinlashdir:
+Ushbu vaziyatda, Nyuton usuli bu _z_ nuqtadan boshlab yig'ish va shu ishni takrorlab `Sqrt(x)`ni yaqinlashdir:
 
 .image /content/img/newton.png
 
-Boshiga oddiygina 10 marta takrorlashni amalga oshirib va (1, 2, 3, ...) o'zgaruvchan qiymatlar uchun qanchalik siz yaqin qiymatlarni olar ekansiz shuni ko'rish kerak.
+Boshiga oddiygina 10 marta takrorlashni amalga oshirib (1, 2, 3, ...) o'zgaruvchan qiymatlar uchun qanchalik siz yaqin qiymatlarni olar ekansiz shuni ko'rish kerak.
 
-Keyin, takrorlanish shartini to'xtatish uchun o'zgartiring bu vaqtda qiymat to'xtatish qiymatiga teng bo'lishi kerak(yoki faqat juda kichik deltalar bo'yicha o'zgartiriladi). Ko'ring agar ko'p yoki kam iteratsiya bo'lsa.  Qanchalik siz yaqinsiz quyidagiga [[http://golang.org/pkg/math/#Sqrt][math.Sqrt]]?
+Keyin, takrorlanish shartini to'xtatish uchun o'zgartirish kiriting. Bu vaqtda qiymat to'xtatish qiymatiga teng bo'lishi kerak(yoki faqat juda kichik deltalar bo'yicha o'zgartiriladi). Ko'ring agar ko'p yoki kam iteratsiya bo'lsa quyidagiga [[http://golang.org/pkg/math/#Sqrt][math.Sqrt]] siz qanchalik yaqinsiz ?
 
 Eslatma: float turidagi o'zgaruvchini e'lon qilish yoki qiymatlash uchun unga float sintaksisidagi qiymatni o'zlashtiring yoki konvertatsiya(bir formatdan ikkinchi formatga o'tkazish)ni amalga oshiring:
 
@@ -93,7 +93,7 @@ Switch vaziyatlarni baholashni yuqoridan pastga qarab amalga oshiradi, agarda bi
 agar `i==0` bo'lsa `f` chaqirilmaydi.)
 
 #appengine: *Izoh:* Go playgroundda vaqt har doim 
-#appengine: 2009-11-10 23:00:00 UTC dan boshlanadi, nimaga bunday qiymat qabul qilishi
+#appengine: 2009-11-10 23:00:00 UTC dan boshlanadi, nimaga bunday qiymat qabul qilishini aniqlashni
 #appengine: o`quvchi uchun topshiriq sifatida qoldiriladi.
 
 .play flowcontrol/switch-evaluation-order.go
@@ -110,13 +110,13 @@ Ushbu konstruksiya if-then-else turidagi uzun zanjirlarni yaratishdagi toza usul
 
 Defer operatori funksiyani bajarilishini funksiya natija qaytarmagunicha ushlab turadi.
 
-Kechiktirilgan funksiya argumentlari darhol hisoblab olinadi biroq funksiya o'zi toki uni o'z ichiga olgan funksiya natija qaytarmagunicha chaqirilmaydi. 
+Kechiktirilgan funksiya argumentlari darhol hisoblab olinadi biroq funksiya o'zi toki uni o'z ichiga olgan funksiya natija qaytarmagunicha chaqirilmaydi.
 
 .play flowcontrol/defer.go
 
 * Deferlar tahlanishi
 
-Defer qilingan amallar stack(navbat)ga yoziladi. Qachon funksiya ishini tugatsa, shunda defer qilingan amallar "oxirgi kirgan birinchi chiqadi" tartibi bõyicha bajariladi.
+Defer qilingan amallar stack(navbat)ga yoziladi. Qachon funksiya ishini tugatsa, shunda defer qilingan amallar "oxirgi kirgan birinchi chiqadi" tartibi bo'yicha bajariladi.
 
 defer operatorlari haqida ko'proq ma'lumotni olish uchun quyidagini o'qing
 [[http://blog.golang.org/defer-panic-and-recover][blog post]].

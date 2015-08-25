@@ -1,10 +1,10 @@
-Raqobat
-Go raqobatni tilning yadro qismida qo'llaydi. Ushbu mashg'ulot uni qanday qo'llanilishini bir nechta misollar bilan ko'rsatib beradi.
+Parallellik
+Go parallellikni tilning yadro qismida qo'llaydi. Ushbu mashg'ulot uni qanday qo'llanilishini bir nechta misollar bilan ko'rsatib beradi.
 
 Go mualliflari
 http://golang.org
 
-* Gorutinlar
+* Gorutinlar (gotartiblar) 
 
 _goroutine_ bu Go runtime tomonidan boshqariladigan yengil vaznli oqim.
 
@@ -16,7 +16,7 @@ yangi gorutin ishga tushirildi
 
 `f`, `x`, `y` va `z` larning e'lon qilinishi joriy gorutinda va `f` ning bajarilishi esa boshqa yangi gorutinda sodir bo'layabdi.
 
-Gorutinlar bitta addres joyida ishta tushadi shu sababli umumiy xotiraga huquq sinxronlashgan bo'lishi kerak. [[http://golang.org/pkg/sync/][`Sinxronlash`]] paketi qulayliklarni ta'minlaydi, bunga qaramasdan siz unga muhtojlikni sezmaysiz Go da boshqa qulayliklar mavjud. (Navbatdagi slaydga qarang.)
+Gorutinlar bitta addres joyida ishga tushadi shu sababli umumiy xotiraga huquq sinxronlangan bo'lishi kerak. [[http://golang.org/pkg/sync/][`Sinxronlash`]] paketi qulayliklarni ta'minlaydi, biroq siz unga muhtojlikni sezmaysiz Go da boshqa qulayliklar mavjud. (Navbatdagi slaydga qarang.)
 
 .play concurrency/goroutines.go
 
@@ -26,15 +26,15 @@ Kanallar turlangan trubalar bo'lib ular orqali siz qiymatlarni jo'natish yoki ka
 
 	ch <- v    // v ni ch kanalga jo'natish.
 	v := <-ch  // ch dan qabul qilish va 
-	           // uni v ga biriktirish.
+	           // uni v ga o'zlashtirish.
 
-(Ma'lumot yo'naltiruvvchiga qarab oqadi.)
+(Ma'lumot yo'naltiruvchiga qarab oqadi.)
 
 Maplar va slicelar kabi kanallar ham ishlatilishidan oldin yaratilgan bo'lishi kerak:
 
 	ch := make(chan int)
 
-O'zgarishsiz jo'natishlar va qabul qilishlar blockda toki boshqa tomon tayyor bo'lguncha. Bunday qulaylik gorutinlarga sinxron ishlashlari uchun hech qanday aniq qulflashlarni yoki shartli o'zgaruvchilarni qo'shmasdan amalga oshirish imkonini yaratadi.
+Hech qanday o'zgarishsiz toki boshqa tomon tayyor bo'lguncha jo'natishlar va qabul qilishlar blocklangan holatda bo'ladi. Bunday qulaylik gorutinlarga sinxron ishlashlari uchun hech qanday aniq qulflashlarni yoki shartli o'zgaruvchilarni qo'shmasdan amalga oshirish imkonini yaratadi.
 
 .play concurrency/channels.go
 
@@ -52,15 +52,15 @@ Misolni bufferdan oshirib ishlatishga moslab o'zgartiring va nima sodir bo'lishi
 
 * Range va Close
 
-Jo'natuvchi kanalni boshqa qiymatlarni yubormaslikdan habar berish maqsadida kanalni yopishi(`close`) ham mumkin. Qabul qiluvchi qabul qilish ifodasida ikkinchi parametrdan foydalanib kanal yopiqlig holatini aniqlashi mumkin bo'ladi: quyidagi ifodadan so'ng
+Jo'natuvchi kanaldan boshqa qiymatlarni yubormaslik haqida habar berish maqsadida kanalni yopishi(`close`) ham mumkin. Qabul qiluvchi qabul qilish ifodasida ikkinchi parametrdan foydalanib kanal yopiqlik holatini aniqlashi mumkin bo'ladi: quyidagi ifodadan so'ng
 
 	v, ok := <-ch
 
 `ok` qiymati `false` bo'ladi agarda qabul qilishga hech qanday qiymat bo'lmasa va kanal yopiq bo'lsa.
 
-`for`i`:=`range`c`  kabi takrorlanish kanaldan toki u yopilmagunicha qiymatlarni qabul qilaveradi.
+`for`i`:=`range`c`  ko'rinishidagi takrorlanish, kanaldan toki u yopilmagunicha qiymatlarni qabul qilaveradi.
 
-*Izoh:* Faqat jo'natuvchi kanalni yoopa oladi, qabul qiluvchi hech qachon yopa olmaydi. Yopiq kanalda jo'natishga urinish xatolikka sabab bo'ladi.
+*Izoh:* Faqat jo'natuvchi kanalni yopa oladi, qabul qiluvchi hech qachon yopa olmaydi. Yopiq kanaldan jo'natishga urinish xatolikka sabab bo'ladi.
 
 *Boshqa*izoh*: Kanallar fayllarga o'xshamaydi; Siz odatda ularni yopishga muhtoj emassiz. Yopish faqat qiymatlarni jo'natishga hech vaqo yo'q bo'lgan vaziyatlarda kerak. Masalan, `range` dagi takrorlanishni to'xtatish uchun ishlatilishi mumkin.
 
@@ -70,7 +70,7 @@ Jo'natuvchi kanalni boshqa qiymatlarni yubormaslikdan habar berish maqsadida kan
 
 `select` operatori gorutinlarga ko'p amalli bog'lanishlarda kutishga imkon beradi.
 
-`select` bloklanadi toki vaziyatlardan biri bajarilgunicha, so'ngra ushbu vaziyat bajariladi. U tayyor turganlar bir nechtasidan ixtiyoriy bittasini oladi.
+`select` vaziyatlardan biri bajarilgunicha bloklanadi, so'ngra mos vaziyat bajariladi. U mos vaziyatlardan tayyor turganlarining bir nechtasidan ixtiyoriy bittasini oladi.
 
 .play concurrency/select.go
 
@@ -78,7 +78,7 @@ Jo'natuvchi kanalni boshqa qiymatlarni yubormaslikdan habar berish maqsadida kan
 
 `default` vaziyati agarda boshqa vaziyatlar tayyor bo'lmasa bajariladi.
 
-`default` vaziyatini bloklamasdan jo'natish va qabul qilishga urinishga ishlating:
+`default` vaziyatini bloklamasdan jo'natish va qabul qilishni ishlatishga urinib ko'ring:
 
 	select {
 	case i := <-c:
@@ -92,11 +92,11 @@ Jo'natuvchi kanalni boshqa qiymatlarni yubormaslikdan habar berish maqsadida kan
 * Mashq: Ikkilik daraxtiga ekvivalent
 Ikkilik daraxti shunday hislatliki uning har bir tuguni, o'zining chap qismida o'zidan kichkina qiymatni va o'zining o'ng tomonida o'zidan katta qiymatni saqlay oladi.
 
-U yerda berilgan qiymatlardan bir qancha ikkilik daraxtlarini barglari bilan yasash imkoni bo'lishi mumkin. Masalan quyida keltirilgan qiymatlar ket-ketligidan ikkita ikkilik daraxtini yasash mumkin 1, 1, 2, 3, 5, 8, 13.
+U yerda berilgan qiymatlardan bir qancha ikkilik daraxtlarining barglari bilan yasash imkoni bo'lishi mumkin. Masalan quyida keltirilgan qiymatlar ketma-ketligidan ikkita ikkilik daraxtini yasash mumkin 1, 1, 2, 3, 5, 8, 13.
 
 .image /content/img/tree.png
 
-Ko'pgina dasturlash tillarida qiymatlar ketma-ketligidan ikkilik daraxtini yasash mumkinligini aniqlash bir muncha murakkabroq hisoblanadi. Biz Goning kanallari va raqobatidan foydalanib onson yechimni yozamiz.
+Ko'pgina dasturlash tillarida qiymatlar ketma-ketligidan ikkilik daraxtini yasash mumkinligini aniqlash bir muncha murakkabroq hisoblanadi. Biz Goning kanallari va parallelligidan foydalanib onson yechimni yozamiz.
 
 Ushbu misol `tree` paketini ishlatayabdi. Ushbu paketda Tree turi ham e'lon qilingan:
 
@@ -108,11 +108,11 @@ Ushbu misol `tree` paketini ishlatayabdi. Ushbu paketda Tree turi ham e'lon qili
 
 * Mashq: Ikkilik daraxtiga ekvivalent
 
-*1.* `Walk` funkciyasini bajarilish holatiga keltirish.
+*1.* `Walk` funkciyasini ishchi holatiga keltirish.
 
 *2.* `Walk` funksiyasini Test qilish.
 
-`tree.New(k)` funksiyasi `k`, `2k`, `3k`, ..., `10k` qiymatlardan foydalanib tasodifiy-strukturalangan ikkilik daraxtini konstruksiya qiladi.
+`tree.New(k)` funksiyasi `k`, `2k`, `3k`, ..., `10k` qiymatlardan foydalanib tasodifiy-strukturalangan ikkilik daraxtini konstruksiyalaydi.
 
 Yangi kanal yarating va yurishni davom ettiring:
 
@@ -120,9 +120,9 @@ Yangi kanal yarating va yurishni davom ettiring:
 
 So'ngra o'qing va kanaldagi 10 ta qiymatni chop eting. Ular 1, 2, 3, ..., 10 sonlar bo'lishi kerak.
 
-*3.* `Same` funksiyasini `Walk` funksiyasidan foydalanib ishlash holatiga keltiring. Ushbu funksiya `t1` va `t2` larning qiymatlarini ustma-ust tushishini tekshirsin.
+*3.* `Same` funksiyasini `Walk` funksiyasidan foydalanib ichchi holatiga keltiring. Ushbu funksiya `t1` va `t2` larning qiymatlarini ustma-ust tushishini tekshirsin.
 
-*4.* `Same` funkssiyasini tekshirish.
+*4.* `Same` funksiyasini tekshirish.
 
 `Same(tree.New(1),`tree.New(1))` natija true va `Same(tree.New(1),`tree.New(2))` natijasi false bo'lishi kerak.
 
@@ -130,7 +130,7 @@ So'ngra o'qing va kanaldagi 10 ta qiymatni chop eting. Ular 1, 2, 3, ..., 10 son
 
 * Mashq: Web robotlar
 
-Ushbu topshiriqda siz Goning raqobatlik imkoniyatidan foydalanib web skanerni parallellashtirasiz.
+Ushbu topshiriqda siz Goning parallellik imkoniyatidan foydalanib web skanerni parallellashtirasiz.
 
 `Crawl` funksiyasini shunday o'zgartiringki u URL larni parallel olsinu lekin bir hil URL larni takroran olib qo'ymasin.
 

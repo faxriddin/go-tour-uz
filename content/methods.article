@@ -8,15 +8,15 @@ http://golang.org
 
 Go klasslarsiz ishlaydi. Bunga qaramasdan siz struct turida metodlarni aniqlashingiz mumkin.
 
-_metod_qabul_qiluvchi_ argumentlar ro'yhatida kelib `func` kalit so'zi bilan metod nomi orasida bo'ladi.
+_metod_qabul_qiluvchi_ argument argumentlar ro'yhatida kelib `func` kalit so'zi bilan metod nomi orasida bo'ladi.
 
 .play methods/methods.go
 
 * Metodlar davomi
 
-Siz metodni paketingizda e'lon qilingan turlardan foydalanib _ixtiyoriy_ turda e'lon qilishingiz mumkin faqat struct turida  emas.
+Siz metodni paketingizda e'lon qilingan turlardan foydalanib _ixtiyoriy_ turda e'lon qilishingiz mumkin, faqat struct turida emas.
 
-Bundan tashqari siz metod turini boshqa paketdagidan foydalanib ham ko'rsata olmaysiz (shuningdek qurilgan turlarni ham ishlata olmaysiz).
+Bundan tashqari siz metod turini boshqa paketdagi turdan foydalanib ham ko'rsata olmaysiz (shuningdek yasama turlarni ham ishlata olmaysiz).
 
 .play methods/methods-continued.go
 
@@ -30,7 +30,7 @@ Ko'rsatkichli qabul qiluvchini ishlatishni ikkita sababi bor. Birinchisi, har sa
 
 `Abs` va `Scale` e'lonlarni `*Vertex` dan `Vertex` ga almashtirib ishlatib ko'ring.
 
-`Scale` metodi `v` `Vertex` bo'lganida hech qanday o'zgartirish kirita olmaydi. `Scale` `v` ni o'zgartiradi. `v` qiymat turi ko'rsatkich bo'lmaganligi sababli metod `Vertex` dagi ko'ringanini nusxalab olib uni ustida ish olib boradi va asil qiymatga ta'sir o'tkaza olmaydi.
+`Scale` metodi `v` ga `Vertex` bo'lganida hech qanday o'zgartirish kirita olmaydi. `Scale` `v` ni o'zgartiradi. `v` qiymat turi ko'rsatkich bo'lmaganligi sababli metod `Vertex` dagi ko'ringanini nusxalab olib uni ustida ish olib boradi va asil qiymatga ta'sir o'tkaza olmaydi.
 
 `Abs` baribir ishlaydi. U `v` ni faqat o'qiydi.  Shu sababli qiymatni asil nusxasi ustida ish qilinayabdimi(qiymat ko'rsatkichlimi) yoki qiymat nusxalanib so'ngra uni ustida ish qilinayabdimi buni unga hech qanday farqi yo'qday bo'ladi.
 
@@ -121,7 +121,7 @@ va unga ushbu metodni berib xatolikni yarating
 
 Bunda `ErrNegativeSqrt(-2).Error()` metodni chaqiruvi `"cannot`Sqrt`negative`number:`-2"` degan natijani qaytarishi lozim.
 
-*Izoh:* `fmt.Sprint(e)` ni `Error` metodi ichida chaqirish dasturni cheksiz takrorlanish sikliga jo'natadi. Siz ushbu tur o'zgartirishdan foydalanib bundan avvalroqdan oldini olishingiz mumkin: `fmt.Sprint(float64(e))`. Nima uchun?
+*Izoh:* `fmt.Sprint(e)` ni `Error` metodi ichida chaqirish dasturni cheksiz takrorlanish sikliga jo'natadi. Siz ushbu tur o'zgartirishdan foydalanib bundan avvalroq oldini olishingiz mumkin: `fmt.Sprint(float64(e))`. Nima uchun?
 
 `Sqrt` funksiyangizni manfiy son kiritganda `ErrNegativeSqrt` qiymat qaytaradigan qilib o'zgartiring.
 
@@ -131,7 +131,7 @@ Bunda `ErrNegativeSqrt(-2).Error()` metodni chaqiruvi `"cannot`Sqrt`negative`num
 
 `io` paketi ma'lumotlar oqimi oxirini o'qishga moslashgan `io.Reader` interfeysini aniqlaydi.
 
-Goning standart kutubxonasi o'zida [[http://golang.org/search?q=Read#Global][ko'pgina qo'llaniluvchi]] interfeyslar, fayllar qo'shilish yuklanmasi, tarmoqqa ulanishlar, compressorlar, cipher lar va boshqalarni mujassanlashtirgan.
+Goning standart kutubxonasi o'zida [[http://golang.org/search?q=Read#Global][ko'pgina qo'llaniluvchi]] interfeyslar, fayllar qo'shilish yuklanmasi, tarmoqqa ulanishlar, compressorlar, shifrlar va boshqalarni mujassamlashtirgan.
 
 `io.Reader` interfeysi `Read` metodiga ega:
 
@@ -152,14 +152,14 @@ Cheksiz oqimdan ASCII ning `'A'` belgisini ajratib olishni `Reader` turida bajar
 
 * Mashq: rot13O'quvchi
 
-[[http://golang.org/pkg/io/#Reader][io.Reader]] umumiy qolipini oqimlarini ketishini o'zgartirish bu boshqa `io.Reader` o'ramoq deganidir.
+[[http://golang.org/pkg/io/#Reader][io.Reader]] bu oqimlarni ketishini o'zgartirishga bir muncha ta'sir qiluvchi boshqa `io.Reader` ni qobig'i sifatida ishlaydigan umumiy qolip.
 
 Masalan, [[http://golang.org/pkg/compress/gzip/#NewReader][gzip.NewReader]] funksiyasi `io.Reader` ni oladi va `io.Reader`(siqilmagan ma'lumotlar oqimi) ni qo'llab `*gzip.Reader`(siqilgan ma'lumotlar oqimi) ni qaytaradi.
 
-`rot13Reader` ni `io.Reader` ni qo'llab va `io.Reader` dan satrni o'qiydigan qilib ish holatiga keltiring, [[http://en.wikipedia.org/wiki/ROT13][rot13]]  ni qo'llab shifr o'rniga barcha alfavit belgilarini chiqarib oqimni o'zgartiring.
+`rot13Reader` masalasini `io.Reader` ni qo'llab va `io.Reader` dan satrni o'qiydigan qilib ishchi holatiga keltiring, [[http://en.wikipedia.org/wiki/ROT13][rot13]] ni qo'llab shifr o'rniga barcha alfavit belgilarini chiqarib oqimni o'zgartiring.
 
 `rot13Reader` turi sizga taqdim etilgan.
-Ushbu `io.Reader` ni uning `Read` metodini qo'llab yasang.
+Ushbu `io.Reader` ni uning `Read` metodidan foydalanib yasang.
 
 .play methods/exercise-rot-reader.go
 
@@ -218,18 +218,18 @@ Misol uchun, quyidagilarni ishlatib siz boshqaruvchilarni ro'yhatdan o'tkazishga
 		At(x, y int) color.Color
 	}
 
-*Izoh*: `Bounds` metodining `Rectangle` qaytarayotgan quymati aslida  
+*Izoh*: `Bounds` metodining `Rectangle` qaytarayotgan qiymati aslida  
 [[http://golang.org/pkg/image/#Rectangle][`image.Rectangle`]] bo'lib u `image` paketini ichida e'lon qilingan.
 
 (Batafsil ma'lumot olish uchun [[http://golang.org/pkg/image/#Image][qo'llanmaga]] qarang.)
 
-`color.Color` va `color.Model` turidagi interfeyslari ham bor lekin biz ularni o'rniga `color.RGBA` va `color.RGBAModel` larni qo'llaymiz. Ushbu interfeyslar va turlar [[http://golang.org/pkg/image/color/][image/color paketida]] e'lon qilingan
+`color.Color` va `color.Model` turidagi interfeyslari ham bor, lekin biz ularni o'rniga `color.RGBA` va `color.RGBAModel` larni qo'llaymiz. Ushbu interfeyslar va turlar [[http://golang.org/pkg/image/color/][image/color paketida]] e'lon qilingan
 
 .play methods/images.go
 
 * Mashq: Sur'atlar
 
-Avval yaratgan rasm generatoringiz yodingizdami? Keling yana bittasini yozamiz, ammo bu safar u ma'lumotlar slicei oo'rniga `image.Image` ni qaytaradi.
+Avval yaratgan rasm generatoringiz yodingizdami? Keling yana bittasini yozamiz, ammo bu safar u ma'lumotlar slicei o'rniga `image.Image` ni qaytaradi.
 
 O'zingizni `Image` turingizni aniqlang, [[http://golang.org/pkg/image/#Image][zarur metodlarni]] qo'llang va `pic.ShowImage` ni chaqiring.
 

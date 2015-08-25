@@ -1,5 +1,5 @@
 Ko'p turlilar:  struct(tuzilma)lar, slice(qirqim)lar va map(xarita)lar.
-Qanday qilib mavjud bo'lgan bir tur asosida boshqa turlarni aniqlashni o'rgatadi.  Bu mashg'ulot struct - tuzilma, array - massiv, slice - qirqim va map -xaritani o'z ichiga oladi.
+Qanday qilib mavjud bo'lgan bir tur asosida boshqa turlarni aniqlashni o'rgatadi. Bu mashg'ulot struct - tuzilma, array - massiv, slice - qirqim va map -xaritani o'z ichiga oladi.
 
 Go mualliflari
 http://golang.org
@@ -13,7 +13,7 @@ Ko'rsatkichlar qiymat sifatida xotira manzilini saqlaydi.
 
 	var p *int
 
-`&` operatori uning operandidan ko'rsatkich generatsiya qiladi.
+`&` operatori o'zining operandidan ko'rsatkich generatsiya qiladi.
 
 	i := 42
 	p = &i
@@ -25,7 +25,7 @@ Ko'rsatkichlar qiymat sifatida xotira manzilini saqlaydi.
 
 Bu "bir marta nomlash" yoki "yo'naltirish"  kabi mashhur.
 
-C dan farqli ravishda, Go ko'rsatkichlar ustida arithmetic amallar bajara olmaydi.
+C dan farqli ravishda, Go ko'rsatkichlar ustida arifmetik amallar bajara olmaydi.
 
 .play moretypes/pointers.go
 
@@ -57,7 +57,7 @@ Literalli structlar o'zining maydonlarini qiymatlarida structlar yotishini angla
 
 Siz qism to'plamlar maydonlarini `Name:` ni qo'llab hisoblab chiqishingiz mumkin. (Va nomlarning tartibi ahamiyat kasb etmaydi.)
 
-Maxsus `&` old qo'shimcha belgi struct qiymatiga ko'rsatkichni qaytaradi.
+Maxsus `&` old qo'shimcha belgi struct qiymatiga ko'rsatuvchi ko'rsatkichni qaytaradi.
 
 .play moretypes/struct-literals.go
 
@@ -69,11 +69,11 @@ Quyidagi ifoda
 
 	var a [10]int
 
-`a` o'zgaruvchini 10 ta integer turidagi massivni e'lon qiladi.
+`a` o'zgaruvchini 10 ta integer turidagi massiv sifatida e'lon qiladi.
 
 Massivning uzunligi uning turining qismi hisoblanadi shu sababli massiv qayta o'zgartirilmaydi.
 Bu chegaralashdek ko'rinadi, ammo xavotirga o'rin yo'q;
-Go massivlar bilan ishlashga mos keladigan yo'lni yetkazib beradi.
+Go massivlar bilan ishlashga mo'ljallangan yo'lni ta'minlab qo'ygan.
 
 .play moretypes/array.go
 
@@ -87,7 +87,7 @@ Slice massiv qiymatlariga ko'rsatadi va shuningdek uzunligini ham qo'shadi.
 
 * Slicelarni qirqish
 
-Slicelar yana qirqilgan bo'lishi mumkin. Ushbu slice qiymati yana ham ana shu massivga ko'rsatuvchi yangi sliceni yaratgan bo'ladi.
+Slicelar yana qirqilgan bo'lishi mumkin. Ushbu slice qiymati shu massivga ko'rsatuvchi yangi sliceni yaratgan bo'ladi.
 
 Quyidagi ifoda
 
@@ -162,9 +162,9 @@ Agar siz faqat indekslarni olishni xohlayotgan bo'lsangiz u holda ", value" ni o
 
 * Mashq: Slicelar
 
-`Pic` ni ishchi holatga keltiring. U uzunligi `dy` ga teng bo'lgan va har bir elementi uzunligi `dx` qiymati esa 8-bitli ishorasiz int (uint8)li sliceni qaytarishi kerak. Qachon siz dasturni ishga tushirsangiz, u sonlarni qo'llab sizni kulrangni shkalasini (ko'krangni) rasm tarzida namoyish etishi kerak.
+`Pic` ni ishchi holatga keltiring. U uzunligi `dy` ga teng bo'lgan va har bir elementi uzunligi `dx` ga qiymati esa 8-bitli ishorasiz int (uint8)li sliceni qaytarishi kerak. Qachon siz dasturni ishga tushirsangiz, u sonlarni qo'llab sizga kulrangni shkalasini (ko'k rangni) rasm tarzida namoyish etishi kerak.
 
-Rasmni tanlash sizga bog'liq. Qiziqarli funksiyalar `(x+y)/2`, `x*y` va `x^y` larni o'z ichiga oladi.
+Rasmni tanlash sizga bog'liq. Qiziqarli funksiyalar sifatida `(x+y)/2`, `x*y` va `x^y` lardan foydalanishingiz mumkin.
 
 (Siz har bir `[][]uint8` ichida `[]uint8` ni qo'llashni sikllashtirishingiz kerak.)
 
@@ -176,7 +176,7 @@ Rasmni tanlash sizga bog'liq. Qiziqarli funksiyalar `(x+y)/2`, `x*y` va `x^y` la
 
 Map bu qiymatlar uchun kalitlar mapi.
 
-Maplar ishlatilishidan oldin `make`(`new` emas) yordamida yaratilishi kerak; `nil` map bo'sh va uni biriktirib bo'lmaydi.
+Maplar ishlatilishidan oldin `make`(`new` emas) yordamida yaratilishi kerak; `nil` bu map bo'sh va uni biriktirib bo'lmaydi  degani.
 
 .play moretypes/maps.go
 
@@ -188,7 +188,7 @@ Literalli maplar literalli structlarga o'xshaydi, ammo bunda kalitlar talab etil
 
 * Literalli maplar davomi
 
-Agar tur nomi yuqorida turlanishda keltirilgan bo'lsa u holda uni elementlar qiymatlarida ko'rsatish shart emas. Masalan misoldagi Vertex so'zi yuqorida e'lon qilinganligi bois quyida elementlar qiymatlarida ko'rsatilmagan.
+Agar tur nomi yuqorida turlanishda keltirilgan bo'lsa u holda uni elementlar qiymatlarida ko'rsatish shart emas. Masalan, misoldagi Vertex so'zi yuqorida e'lon qilinganligi bois quyida elementlar qiymatlarida ko'rsatilmagan.
 
 .play moretypes/map-literals-continued.go
 
@@ -212,7 +212,7 @@ Elementni o'chirish:
 
 Agar `key` `m` da bor bo'lsa `ok` rost ya'ni `true`. Agar yo'q bo'lsa `ok` yolg'on `false` va `elem` mapning elementining turiga tegishli bo'lgan nol qiymatni oladi.
 
-Shu tarzda qachon mapdan o'qisaku lekin biz so'ragan kalitli element yo'q bo'lsa natija map elementining turiga mos nol qiymat bo'ladi.
+Shu tarzda qachon mapdan o'qilsaku lekin biz so'ragan kalitli element yo'q bo'lsa natija map elementining turiga mos nol qiymat bo'ladi.
 
 .play moretypes/mutating-maps.go
 
@@ -234,13 +234,13 @@ Funksiyalar ham qiymat bo'la oladi.
 
 Go funksiyalr tutilma bo'lishi mumkin. Tutilma bu funksiya qiymatining tashqi tanadagi o'zgaruvchi qiymati bilan bog'lanishidir. Funksiya o'zgaruvchilar murojaatiga qiymat biriktirish yoki undan foydalanish huquqiga ega bo'ladi. Bu funksiya o'zgaruvchilar "chegarasi"da degan ma'noni anglatadi.
 
-Misol uchun `adder` funksiya tutilmani qaytaradi. Har bir tutilma bu `sum` o'zgaruvchisining o'z chegarasi bilan bog'liqdir.
+Misol uchun `adder` funksiya tutilmani qaytaradi. Har bir tutilma bu `sum` o'zgaruvchisining o'z chegarasi bilan bog'liqligidir.
 
 .play moretypes/function-closures.go
 
 * Mashq: Fibonachchi tutilmasi
 
-Keling funksiyalar ustida "xazillashamiz".
+Keling funksiyalar ustida "o'ynab" ko'ramiz.
 
 `fibonacci` funksiyasini ishchi holatga keltiring. U fibonachchi sonlarini qaytaruvchi funksiyani (tutilma bu vaqtda funksiya tutilma bo'layabdi) qaytarishi  lozim.
 

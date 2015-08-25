@@ -14,7 +14,7 @@ Ushbu dastur import qilish yo'li bilan `"fmt"` va `"math/rand"` paketlarini qo'l
 
 Kelishuv bo'yicha paket nomi ko'rsatilgan yo'lning oxirgi elementining nomi bilan bir xil bo'ladi. Masalan, `"math/rand"` paketi  o'zida `package`rand` operatori bilan boshlanadigan fayliga ega.
 
-#appengine: *Izoh:* ushbu dasturlar bajarilayotgan muhitlar ajralgan (deterministik ko'rinishida),
+#appengine: *Izoh:* ushbu dasturlar bajarilayotgan muhitlar ajralgan bo'ladi (deterministik ko'rinishida),
 #appengine: shu sababli `rand.Intn` har doim bir xil sonni qaytaradi.
 #appengine:
 #appengine: (Turli sonlarni generatsiya qilib olish uchun sonlar generatoridan foydalanish kerak; 
@@ -37,7 +37,7 @@ Ammo yuqoridagi usul bir joyga yig'ib import qilishning yaxshi usuli.
 
 * Eksport qilingan nomlar
 
-Paket import qilingach siz unga eksport qilish davomida nomi bo'yicha murojaat qilishingiz mumkin.
+Paket import qilingach siz uni eksport qilish davomida nomi bo'yicha murojaat qilishingiz mumkin.
 
 Go da `nom` eksport qilingan hisoblanadi agarda uning bosh xarfi katta bo'lsa.
 
@@ -90,7 +90,7 @@ Ushbu nomlar qaytarilayotgan ma'lumotlarni nimani anglatishini bilish maqsadida 
 
 `return` operatorining argumentlarsiz ishlatilishi joriy qiymatlarni natija qilib qaytaradi. Bu "yalang'och" qaytarish deya nomlanadi.
 
-Yalang'och qaytarish operatori qisqa funksiyalarda ishlatilishi lozim. BU yerda misol keltirildi. Ular uzun yozilgan funksiyalarni tahlil qilishda noqulaylik tug'dirishi mumkin.
+Yalang'och qaytarish operatori qisqa funksiyalarda ishlatilishi lozim. Bu yerda misol keltirildi. Ular uzun yozilgan funksiyalarni tahlil qilishda noqulaylik tug'dirishi mumkin.
 
 .play basics/named-results.go
 
@@ -142,7 +142,7 @@ Misol bir nechta turlarga tegishli o'zgaruvchilarni e'lon qilgan va yana bu o'zg
 
 .play basics/basic-types.go
 
-* No`l qiymatlar
+* Nol qiymatlar
 
 O'zgaruvchilar aniq bir qiymat bilan qiymatlanmasligi ularni _nol_qiymat_ bilan qiymatlanishiga olib keladi.
 
@@ -170,7 +170,7 @@ Yoki yanada soddaroq ko'rinishda:
 	f := float64(i)
 	u := uint(f)
 
-C dagidan farqli ravishda  Go da farqli turlar elementlari orasida biriktirishda aniq o'tkazish talab qilinadi.
+C dagidan farqli ravishda  Go da farqli turlar elementlari orasida biriktirishda aniq turga o'tkazish talab qilinadi.
 Misoldagi `float64` yoki `int` o'tkazishlarni o'chiring va nima yuz berishini ko'ring.
 
 .play basics/type-conversions.go
@@ -190,7 +190,7 @@ Ammo o'ng qo'l tomon sonli o'zgarmaslardan tashkil topgan bo'lsa u holda yangi o
 	f := 3.142        // float64
 	g := 0.867 + 0.5i // complex128
 
-`v` ning qiymatlovchisni o'zgartirib ko'ring va nima yuz berishini kuzating.
+`v` ning qiymatlovchisini o'zgartirib ko'ring va nima yuz berishini kuzating.
 
 .play basics/type-inference.go
 
@@ -208,7 +208,7 @@ O'zgarmaslar `:=` sintaksis orqali e'lon qilinmaydi.
 
 Sonli o'zgarmaslar bu yuqori aniqlikdagi _qiymatlar_.
 
-Turlanmagan o'zgarmas turini qiymatlovchi turidan kelib chiqib oladi.
+Turlanmagan o'zgarmas o'z turini qiymatlovchi turidan kelib chiqib oladi.
 
 `needInt(Big)` ni ham chop etishga urinib ko'ring.
 
